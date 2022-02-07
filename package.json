@@ -1,0 +1,26 @@
+{
+  "name": "G12_LSKV_FC_Sprint6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lean9ema/G12_LSKV_FC_Sprint6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lean9ema/G12_LSKV_FC_Sprint6/issues"
+  },
+  "homepage": "https://github.com/lean9ema/G12_LSKV_FC_Sprint6#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.15.1"
+  }
+}

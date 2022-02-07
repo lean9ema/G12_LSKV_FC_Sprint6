@@ -10,3 +10,4 @@ module.exports = {
   dialect: process.env.DB_DIALECT
   }
 }
+
