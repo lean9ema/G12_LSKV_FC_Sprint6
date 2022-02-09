@@ -14,7 +14,36 @@ module.exports = (sequelize, DataTypes) => {
       Products.belongsTo(models.Categorys,{
         foreignKey:'idCategory',
         as:'category'
-      })
+      }),
+      Products.belongsTo(models.Styles,{
+        as: "Styles", 
+        foreignKey: "Styles_idStyles" 
+       }),
+      Products.belongsTo(models.Colours,{
+        as: "Colours", 
+        foreignKey: "Colours_idColours" 
+       }),
+       Products.belongsTo(models.Sizes,{
+        as: "Sizes", 
+        foreignKey: "Sizes_idSizes" 
+       }),
+       Products.belongsTo(models.Image_product,{
+        as: "Image_product", 
+        foreignKey: "Sizes_idSizes" 
+       }),
+       Products.belongsTo(models.Visibility,{
+        as: "Visibility", 
+        foreignKey: "Visibility_idVisibility" 
+       }),
+       Products.belongsTo(models.Stars,{
+        as: "Stars", 
+        foreignKey: "Stars_idStars" 
+       }),
+       Products.hasMany(models.Image_product,{
+        as: "Image_product", 
+        foreignKey: "description" 
+       })
+
     }
   }
   Products.init({
