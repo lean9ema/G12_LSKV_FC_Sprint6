@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head.ejs') %>
+    <body>
+        <%- include('../partials/header.ejs') %> 
+        <main>
+            <% if (locals.product) { %>
+                <section>
+                    <article>
+                        <h4 class="title">Tu carrito de compras</h4>
+                    </article>
+                    <article class="paso">
+                        <a href='/products/productCart'><h2>1</h2></a> 
+                        <a href='/products/productCart2'><h2>2</h2></a>
+                        <a href='/products/productCart3'><h2>3</h2></a>
+                        <h2 class="pasoCuatro">4</h2>
+                    </article>
+                </section>
+    
+                <p class="title-1-prodCart">
+                    Tu carrito tiene x productos distintos
+                </p>
+                        <section class="det-compra">
+                            <article class="detalle-prod">
+                                <div class="imagen-prod"><img src="/images/products/<%= product['img-pr'] %> " alt="Foto del producto" class="Foto del producto"></div>
+                                <div>
+                                    <h4><%= product.name %> </h4>
+                                    <p>Talle <%= product.size %> </p>
+                                    <div>
+                                        <form action="/" method="POST">
+                                            <label for="cant">
+                                                Cantidad:
+                                                <input type="number" id="cant" name="cant" value="<%= product.cant %>">
+                                            </label>
+                                        </form>
+                                    </div>
+                                </div>
+                            </article>
+            
+                            <article class="precio">
+                                <div>
+                                    <h4>PRECIO UNITARIO:</h4>
+                                    <p>AR$ <%= product.price %> </p>
+                                </div>
+                                <div>
+                                    <h4>TOTAL:</h4>
+                                    <p>AR$ <%= product.total %> </p>
+                                </div>
+                            </article>
+            
+                            <article class="boton">
+                                <button type="reset" class="style-button">Borrar</button>
+                            </article>
+                        </section>
+                        <article class="total">
+                            <div>
+                                <h5>TOTAL DE PRODCUTOS AR$x.xxx</h5>
+                            </div>
+                            <div>
+                                <h5>DESCUENTO -AR$xxx</h5>
+                            </div>
+                            <div>
+                                <h5>CARGO DE ENVIO AR$xxx</h5>
+                            </div>
+                            <div>
+                                <h5>TOTAL AR$x.xxx</h5>
+                            </div>
+                        </article>
+                        <article class="adress">
+                            <div class="facturacion">
+                                <h4>Direccion de facturación</h4>
+                                <p>Nombre comprador</p>
+                                <p>Direccion</p>
+                                <p>CP-Ciudad</p>
+                                <p>Provincia-Pais</p>
+                                <button type="reset">Modificar</button>
+                            </div>
+                            <div class="envio">
+                                <h4>Direccion de entrega</h4>
+                                <p>Nombre comprador</p>
+                                <p>Direccion</p>
+                                <p>CP-Ciudad</p>
+                                <p>Provincia-Pais</p>
+                                <button type="reset">Modificar</button>
+                            </div>
+                        </article>
+                        <article class="pago">
+                            <div>
+                                <i class="fas fa-credit-card"></i>
+                                <h3>Tarjeta de crédito/débito</h3>
+                            </div>
+                            <div>
+                                <i class="fas fa-wallet"></i>
+                                <h3>Efectivo, cajeros o depósito</h3>
+                            </div>
+                            <div>
+                                <img src="/images/mer-pago.svg" alt="Mercado Pago">
+                                <h3>Fondos de MercadoPago</h3>
+                            </div>
+                        </article>
+                    </section>
+                <% }else{ %>
+                    <h4>No hay productos en el carrito</h4>
+                <%} %>
+        </main>
+        <%- include('../partials/footer') %>
+    </body>
+</html>

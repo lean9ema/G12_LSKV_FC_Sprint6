@@ -1,0 +1,1932 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+:root{
+    --rojo: #BA135D;
+    --rosa: #F8E2CF;
+    --letra_gris: #666;
+}
+
+.style-button{
+    color: white;
+    background-color: #BA135D;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+main,header,footer{
+    font-family: 'Poppins', sans-serif;
+}
+
+header div.container {
+    max-width: 1000px;
+}
+
+div.container{
+    width: 100%;
+}
+
+header div .header-container div.IngresarRegistrarse a,
+header div .header-container div a{
+    color: var(--rojo);
+    font-size: 14px;
+}
+
+header div .header-container div.login-home a, 
+header div .header-container div.burger-menu a{
+    font-size: 25px;
+} 
+
+/* LOCALES */
+main.locales div div .local-maps{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main.locales div div div .text-local{
+    margin: 20px 0px 35px 0px;
+}
+
+main.locales div div .title{ 
+    display: flex;
+    position: relative;
+    justify-content:center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3rem;
+    margin: 15px 0px 40px;
+}
+main.locales div div .title:before{
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    bottom: 2px;
+    border-bottom: 3px solid #BA135D;
+}
+
+main.locales div div .descrip-local{
+    margin-bottom: 27px;
+}
+
+main.locales div div div div div .descripcion{
+    font-size: 13px;
+}
+
+/*CONTACTO*/
+
+main.contact{
+    text-align: center;
+}
+
+main.contact h1.title{ 
+    display: flex;
+    position: relative;
+    justify-content:center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3rem;
+    margin: 15px 0px 40px;
+}
+
+main.contact h1.title:before{
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    bottom: 2px;
+    border-bottom: 3px solid var(--rojo);
+}
+
+main.contact div.questions{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+
+ul{
+    list-style: none;
+}
+.preg-frec li>a{
+    color: black;
+    padding:10px;
+    display: block;
+    text-decoration: none;
+    min-width: 100px;
+}
+.preg-frec>li:hover>a{
+    color:000;
+    background-color: var(--rosa);
+}
+.preg-frec>li{
+    text-align: center;
+}
+
+.preg-frec>li>ul{
+    display:none;
+
+}
+.preg-frec>li:hover>ul{
+    display:block;
+    border: solid 1px rgb(192, 190, 190);
+}
+
+.preguntas{
+    text-align: left;
+}
+/* Header */
+header { 
+    background-color: var(--rosa);
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+}
+
+.header-container {
+    display: flex;
+    height: 55px;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 50px;
+}
+
+div.login-home a,
+div.burger-menu a{
+    font-size: 20px;
+    text-decoration: none;
+}
+div.login-home a{
+    margin: 0px 5px;
+}
+div.burger-menu,
+div.login-home{ 
+    padding-top:10px ;
+}
+
+div.logo-container{
+    padding: 5px 0px ;
+}
+
+div.burger-menu {
+    padding-left:5px;
+    margin-left: 50px;
+    position: absolute;
+}
+
+div.buscador { 
+    display: none;
+}
+
+div.buscador2{ 
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+header div.buscador form,
+div.buscador2 form { 
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 90%;
+}
+header div.buscador form input,
+div.buscador2 form input { 
+    width: 100%;
+    display: block;
+    border: solid 1px var(--rojo);
+    height: 33px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0,30%);
+}
+header div.buscador form button,
+div.buscador2 form button{ 
+    position: absolute;
+    cursor: pointer;
+    right: 1px;
+    border: none;
+    border-left: solid 1px var(--rojo);
+    background-color: #FFF;
+    width: 35px;
+}
+header div.buscador form button i,
+div.buscador2 form button i {
+    color: var(--rojo);
+    font-size: 20px ;
+}
+
+.nav-container ul li{
+    font-size: 18px;
+}
+
+nav.nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+div.IngresarRegistrarse,
+div.list-container { 
+    display: none;
+    color: var(--rojo) ;
+    font-family: 'Bebas Neue', cursive;
+}
+.list-user,
+.list-home {
+    list-style: none;
+    display: flex;
+}
+
+
+.list-home li{
+    padding: 10px 15px;
+}
+
+.list-user li{ 
+    padding: 10px 2px;
+}
+.IngresarRegistrarse li a,
+.list-home li a {
+    text-decoration: none;
+    padding: 5px;
+    color: var(--rojo);
+}
+
+
+/** Home **/
+.banner{
+    width: 100%;
+}
+
+section div .img-banner{
+    width: 100%;
+}
+
+/* Populares */
+
+.populares{
+    width: 100%;
+    display: flex;
+    margin-top: 3%;
+}
+
+section .popular-now{
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+section div .tittle-popu{
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    position: relative;
+    font-family: 'Bebas Neue', cursive;
+}
+
+section div .tittle-popu:before {
+    width: 200px;
+    height: 1px;
+    bottom: 5px;
+    position: absolute;
+    content: "";
+    border-bottom: 3px solid var(--rojo);
+}
+
+.populares .popular-now .btn-popu{
+    display: flex;
+    justify-content: center;
+}
+
+.populares .popular-now .btn-popu a { 
+    text-decoration: none;
+    width: 130px;
+    height: 55px;
+    margin: 20px 5px;
+    display: grid;
+    align-items: center;
+}
+
+.products{
+    margin-top: 1%;
+}
+div.products article a{ 
+    text-decoration: none;
+}
+
+/* Main */ 
+
+main.home section article{
+    background-color: #FFF;
+    
+}
+main.home section article div{
+    position: relative;
+    text-align: center;
+}
+
+main.home section article img{
+    width: 100%;
+}
+
+main.home{
+    width: 95%;
+    margin: 100px auto 0px auto; 
+}
+
+.products article{
+    margin: 10px;
+}
+
+.main-article{
+    border: solid 1px #ebebeb;
+    padding: 15px;
+}
+
+.estilos-productos{
+    position: relative;
+    display: flex;
+    justify-content: center;    
+    font-size: 2rem;
+    margin: 10px 0px;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.estilos-productos:before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 1px;
+    bottom: 5px; 
+    border-bottom: 3px solid #BA135D;
+}
+
+/* FOOTER */
+
+footer{
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.footer-Top{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.footer-Top .description{
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+    align-items: center;
+    color: var(--letra_gris);
+}
+
+.footer-Top article.description p,
+.footer-Top .description h4{
+    text-align: center;
+}
+
+.footer-Top .description .icon-des{
+    margin: 0 5px;
+    font-size: 40px;
+}
+.footer-Top .description .icon-des p{
+    font-size: 8px;
+}
+
+.footer-Buttom{
+    display: flex;
+    border-top: 1px solid black;
+    background-color: var(--rosa);
+    color: white;
+    flex-direction: column;
+}
+
+.footer-Buttom article.newsletter h4,
+.footer-Buttom article.red div.icon,
+.footer-Buttom article.red h4 {
+    display: flex;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.footer-Buttom article.red div.icon { 
+    padding: 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.footer-Buttom article.red div.icon i { 
+    font-size: 30px;
+    margin: 0 5px;
+}
+
+.footer-Buttom .red{
+    margin: 10px;
+}
+
+.footer-Buttom article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-Buttom article.newsletter { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.footer-Buttom article.newsletter h4 {
+    text-align: center;
+    font-size: 19px;
+}
+
+
+.footer-Buttom .newsletter .box{ 
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    background-color: rgb(48, 40, 61);
+    border-radius: 10px;
+    width: 220px;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.footer-Buttom .newsletter div.box i{
+    display: flex;
+    font-size: 30px;
+    margin: 0 10px;
+    color: #fff;
+}
+
+.footer-Buttom .newsletter div.box input{
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0 10px;
+    width: 140px;
+}
+
+.footer-Buttom .info{
+    padding: 10px 5px;
+}
+.footer-Buttom .info div ul li,
+.footer-Buttom .info h4 { 
+    text-align: center;
+}
+
+.footer-Buttom .info div ul{
+    list-style: none;
+}
+
+.footer-Buttom .info .derechos{
+    font-family: 'Libre Barcode 39 Text', cursive;
+    font-size: 80px;
+}
+/*Login*/
+
+main.class_login section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+main section .cuerpo{
+    margin: 6px;
+    text-align: center;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+main section  .cuerpo .login form label {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main section .cuerpo .login,
+main section .cuerpo .register {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+}
+
+main section .cuerpo .login .log-Red{
+margin: 4px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+
+}
+main section .cuerpo .login .log-Red div{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+main section .cuerpo .login .log-Red div i{
+    margin: 0 10px;
+}
+main section .cuerpo .login .log-Red .facebook{
+    text-align: center;
+    padding: 3px;
+    color: #fff;
+    background-color: blue;
+    border-radius: 5%;
+}
+main section .cuerpo .login .log-Red .google{
+    text-align: center;
+    padding: 3px;
+    color:#fff;
+    background-color: red;
+    border-radius: 5%;
+}
+main section .cuerpo .login .log-Red div .o{
+    text-align: center;
+}
+main section .cuerpo .login form {
+    
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;  
+}
+main section .cuerpo .login form button{
+    width: 50%;
+    justify-content: center;
+    margin: 0px 50px;
+    border-radius: 5px;
+    
+}
+main section .cuerpo .login form button:hover{
+   
+   background-color:#F8E2CF
+}
+
+main section .cuerpo .register button{
+    width: 50%;
+    justify-content: center;
+    margin: 0px 50px;
+    border-radius: 5px;
+}
+main section .cuerpo .register button:hover{
+    background-color:#F8E2CF
+}
+
+/*Register*/
+main .register{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .register .log-Red div{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+main .register .log-Red div i{
+    margin: 0 10px;
+}
+
+
+main .register .log-Red .facebook{
+    text-align: center;
+    padding: 3px;
+    color: #fff;
+    background-color: blue;
+    border-radius: 5%;
+}
+
+main .register .log-Red .google{
+    text-align: center;
+    padding: 3px;
+    color:#fff;
+    background-color: red;
+    border-radius: 5%;
+}
+main .register .log-Red div .o{
+    text-align: center;
+}
+
+main .register .datos form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;/**/
+    justify-content: center;
+}
+
+main .register .datos div{
+    width: 90%;
+    margin: 2px;
+}
+
+main .register .datos div label{
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+}
+main .next{
+    color: #fff;
+    padding: 3px;
+    border-radius: 5%;
+}
+
+main .register label .text-danger{
+    color: red;
+    font-size: 12px;
+}
+
+/*Usuarios*/
+main.usuarios div.profile-user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main.usuarios h1.title{ 
+    display: flex;
+    position: relative;
+    justify-content:center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    margin: 15px 0px 40px;
+}
+
+main.usuarios h1.title:before{
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    bottom: 2px;
+    border-bottom: 3px solid #BA135D;
+}
+
+main.usuarios div div span.negrita{
+    font-weight: bold;
+}
+
+main.usuarios div div.img-user img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+main.usuarios div div.img-user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    margin: 20px;
+}
+
+/* Product Detail */
+
+div.back,
+main{ 
+    max-width: 1040px;
+    margin: 110px auto 0px auto;
+}
+
+main article.prod-detail{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px
+}
+
+div.back { 
+    padding:10px 10px;
+}
+
+main article a,
+div.back a{
+    color: black;
+}
+ div.guia a,
+ div.carrito a, 
+ div.locales a{ 
+    color: #a34141;
+    font-size: 12px;
+}
+div.img-container{
+    position: relative;    
+}
+
+main article .img-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+main article .img-sec { 
+    display: none;
+}
+main article .img-sec img,
+main article .img-principal img { 
+    width: 100%;
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
+div.slider-buttons-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0px 10px ;
+    position: absolute;
+    top: 50%;
+}
+
+main article p.nombre-prod {
+    padding: 10px 0px 5px 0px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(53, 51, 51); 
+}
+
+main article.prod-detail div.stars { 
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px 5px 5px;
+}
+main article div.stars div.score { 
+    display: flex;
+}
+main article div.stars div.score i { 
+    margin: 0px 1px;
+}
+
+main article div.stars p { 
+    margin: 0px 10px;
+    font-size: 12px;
+}
+
+main article p.precio{
+    font-size: 1.25rem;
+    color: #BA135D;
+}
+
+main div.colors { 
+    padding: 2px;    
+}
+
+main p.color{ 
+    padding: 0px 0px 5px 0px;
+}
+
+main div.colors a{ 
+    padding: 2px 5px;
+}
+main div.colors a i{ 
+    transition: font-size 450ms;
+    box-shadow: 0px 0px 5px rgb(100, 100, 100,50%);
+    border-radius: 50%;
+}
+main div.colors a i:hover{
+    font-size: 25px;
+}
+
+main article.prod-detail div.talle { 
+    margin: 2px 0px;
+}
+
+main div.talle p { 
+    position: absolute;
+    font-size: 10px;
+    top: 26%; 
+    left: 0%;
+}
+
+main div.talle a{ 
+    position: relative;
+    margin: 0px 5px;
+    padding: 3px 14px;
+    border-radius: 5px;
+    background-color: #ebebeb;
+}
+
+main div.guia { 
+    padding-top: 5px;
+    text-decoration-line:underline;
+}
+
+main article div.cantidad{
+    margin: 5px 0px;
+}
+form div.cantidad  label { 
+    margin: 0px 5px 0px 0px;
+}
+
+form div.cantidad  input{
+    width: 50px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.description p.title{
+    color: #666;
+    font-weight: bold;
+}
+
+.description p.content{ 
+    text-align: start;
+    color: rgb(82, 80, 80);
+    margin: 0;
+}
+
+main p.title-recom { 
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+div.Recomendaciones { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 30px 0px;
+}
+div.Recomendaciones article { 
+    width: 25%;
+}
+div.Recomendaciones article.deMas {
+    display: none;
+}
+
+div.Recomendaciones article a img{ 
+    width: 100%;
+}
+
+div.Recomendaciones article:hover { 
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
+div.Recomendaciones .price{
+    color: #BA135D;
+}
+
+main article.prod-detail p { 
+    margin: 0px 10px;
+}
+
+div.btn-detalle{
+    display: flex;
+    justify-content: center;
+}
+
+div.btn-detalle a { 
+    display: flex;
+    justify-content: center; 
+    display: grid;
+    align-content: center;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    margin: 20px 5px;
+    background-color: #d8d7d773;
+
+}
+
+div.btn-detalle a.edit { 
+    width: 130px;
+    height: 40px;
+}
+
+div.btn-detalle a.delete {
+    width: 160px;
+    height: 40px;
+}
+.prod-detail .Botones{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.prod-detail .Botones form{
+    margin: 0px 4px;
+}
+
+/* ProductCharger */
+main.charger{
+    display: flex;
+    justify-content: center;
+    
+}
+
+main.charger div.edit{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main div form{
+    justify-content: center;
+}
+
+main div form .form-prod-char{
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+}
+
+main div form fieldset .legend-formulario{
+    text-align: center;
+}
+
+main div form fieldset label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    flex-wrap: wrap;
+}
+
+form div.color,
+form div.size{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+}
+
+form div.color label,
+form div.size label{
+    margin: 3px;
+}
+
+main.charger div.check-c-s { 
+    margin: 0px;
+    display: block;
+}
+.bt { 
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+input.name, 
+input.price, 
+textarea.description{ 
+    width: 300px;
+}
+form div.check-c-s .lbl img{
+    display:inline-block;
+    width: 33px;
+    height: 33px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: 200ms;
+}
+form div.check-c-s .lbl img:hover{
+    width: 40px;
+    height: 40px;
+}
+form div.check-c-s .chk{
+   display: none;
+
+}
+form div.check-c-s .chk:checked + label img{
+    padding: 2px;
+    border:solid 4px #BA135D;
+}
+form div.size .lbl{
+    display: inline-block;
+    width: 40px;
+    height: 30px;
+    border-radius: 20%;
+    cursor: pointer;
+    background-color: fff;
+    text-align: center;
+    border: 0.5px solid black;
+}
+form div.size .chk{
+    display: none;
+}
+form div.size .chk:checked + label{
+    color: #FFF;
+    background-color: #BA135D;
+    border: 2px solid black;
+}
+
+main.charger form label div.text-danger { 
+    color: red;
+    font-size: 12px;
+    display: contents;
+}
+/* ProductList */
+
+main.productList .products{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+}
+
+main.productList .title2,
+main.productList .title{ 
+    display: flex;
+    position: relative;
+    justify-content:center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    margin: 15px 0px 40px;
+}
+main.productList .title2:before,
+main.productList .title:before{
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    bottom: 2px;
+    border-bottom: 3px solid #BA135D;
+}
+
+main.productList .title2:before{
+    width: 430px;
+}
+
+main.productList .products article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    text-align: left;
+    border-radius: 4px;
+} 
+main.productList .products article:hover{
+    box-shadow: #666;
+}
+main.productList .products article:hover .cat, 
+main.productList .products article:hover .category { 
+    display: block;
+}
+main.productList .products .descripcion{
+    padding: 10px;
+}
+main.productList .products article .cat,
+main.productList .products article .category{
+    display: none;
+    color: #666;
+}
+main.productList .products article .precio{
+    color: #BA135D;
+}
+main.productList .products article img{
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+}
+
+/* UsersList */
+
+main.usersList h2.title{ 
+    display: flex;
+    justify-content:center ;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+main.usersList h2.title::before{
+    width: 170px;
+    height: 1px;
+    bottom: 4px;
+    position: absolute;
+    content: "";
+    border-bottom:3px solid #BA135D ;
+}
+main.usersList section { 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+main.usersList section form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex-grow: 1;
+    align-content: center;
+}
+
+main.usersList article { 
+    width: 400px;
+    display: flex;
+    background-color: #b78057;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 3px;
+    justify-content: space-evenly;
+}
+
+main.usersList article:hover{ 
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+main.usersList article a,
+main.usersList article a img { 
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    display: grid;
+    align-self: center;
+}
+
+main.usersList div.description{ 
+    color: gainsboro;
+    text-align:start;
+    padding-left: 15px;
+    padding-top: 5px;
+    position: relative;
+}
+
+main.usersList div.description::before { 
+    content: "";
+    height: 90px;
+    position: absolute;
+    left: 5px;
+    border-left: 1px solid rgb(228, 228, 228);
+}
+div.description p.name { 
+    font-size: 14px;
+}
+div.description p.birthday-date,
+div.description p.email { 
+    font-size: 13px;
+}
+
+main.usersList button.bt-delete{ 
+    width: 38px;
+    font-size: 8px;
+    display: flex;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+}
+/* Product car *//*titulo carrito con paso*/
+main section h4.title { 
+    display: flex;
+    position: relative;
+    justify-content:center;
+    font-size: 25px;
+    margin: 15px 0px 40px;
+}
+main section h4.title:before{
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    bottom: 2px;
+    border-bottom: 3px solid #BA135D;
+}
+
+
+main section .paso{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: relative;
+    align-items: center;
+}
+
+main section .paso:before{
+    content: "";
+    position: absolute;
+    width: 80%;
+    bottom: 50%;
+    border-bottom: 3px solid black;
+    z-index: 0;
+}
+ 
+main section .paso h2{
+    text-align: center ;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 1px solid black ;
+    padding-top: 4px;
+    z-index: 1000;
+    background-color: #fff;
+    color: black;
+}
+
+main section .paso a { 
+    z-index: 0;
+    text-decoration: none;
+}
+
+main section .paso .pasoTres,
+main section .paso .pasoCuatro,
+main section .paso .pasoDos,
+main section .paso .pasoUno{
+    background-color: #BA135D;
+    color: #fff;
+} 
+
+ /*ProductCar 2*/
+
+ main .cuerpoCarrito{
+    text-align: center;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+ }
+ main section .cuerpoCarrito .login{
+    margin: 5px;
+    min-width: 300px;
+ }
+ main section .cuerpoCarrito .login form a{
+     width: 100%;
+     margin: 2px;
+ }
+ main section .cuerpoCarrito .login form button{
+    width: 100%;
+}
+
+main section  .cuerpoCarrito .login form label {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main section .cuerpoCarrito .register form label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: stretch;
+}
+main section .cuerpoCarrito .login form {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    display: grid;  
+}
+main section .cuerpoCarrito .register form {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;  
+}
+main section .cuerpoCarrito .login form button{
+    width:173px ;
+    justify-content: center;
+    margin: 0px 50px;
+    border-radius: 5px;
+    
+    
+}
+main section .cuerpoCarrito .login form button:hover{
+   background-color:#F8E2CF
+}
+
+main section .cuerpoCarrito .register button{
+    width: 173px;
+    justify-content: center;
+    margin: 0px 50px;
+    border-radius: 5px;
+    margin: 10px;
+    
+}
+main section .cuerpoCarrito .register button:hover{
+    background-color:#F8E2CF
+}
+main section h1.title { 
+    display: flex;
+    position: relative;
+    justify-content:center;
+    font-size: 25px;
+    margin: 15px 0px 40px;
+}
+
+main section .cuerpoCarrito .register {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+}
+
+ /*ProductCar 3*/
+
+ main section p.description { 
+    display: flex;
+    text-decoration:underline black;
+    font-size: 25px;
+    justify-content: center;
+    margin: 20px 0px;
+    font-weight: bold;
+}
+
+main section div.form { 
+    display: flex;
+    flex-direction: column;
+    margin: 20px 40px;
+    justify-content: space-around;
+}
+
+main section div.form form label{ 
+    display: flex;
+    flex-direction: column;
+    padding: 7px 0px ;
+}
+main section div.form form label select,
+main section div.form form label input { 
+    width: 90%;
+}
+
+main label div { 
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
+
+main div.bEnv  { 
+    display: flex;
+    justify-content: center;
+}
+
+main div.bEnv button { 
+    font-size: 20px;
+    color: white;
+    background-color: #BA135D;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    padding: 2px;
+}
+
+ /*ProductCar 1 y 4*/
+ main p.title-1-prodCart{ 
+    margin: 10px 20px 0px 20px;
+}
+
+main section.det-compra {
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+main section.det-compra:hover{
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
+article.detalle-prod{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+section.det-compra .detalle-prod img{ 
+    width: 130px;
+}
+article.detalle-prod div,
+article.detalle-prod img{ 
+    margin:0px 5px   ;
+} 
+
+section.det-compra article.detalle-prod form input { 
+    width: 60px;
+}
+section.det-compra article.precio {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+section.det-compra article.precio div { 
+    margin: 0px 10px  
+}
+section.det-compra article.boton{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px;
+}
+
+
+.total h5{
+    margin: 20px;
+    text-align: end;
+ }
+
+
+ main article.adress div{
+     margin: 10px;
+     padding: 2px 10px;
+     border: 2px solid black;
+     width: 200px;
+ }
+
+main article.adress div:hover{
+    box-shadow: 0px 0px 10px rgb(100, 100, 100)
+}
+
+ main article.adress div.facturacion{
+    width: 230px;
+}
+
+main article.pago div{
+    margin: 10px;
+    padding: 2px 10px;
+    border: 2px solid black;
+    border-top: 5px solid black;
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+main article.pago div:hover{
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+    border-top: 5px solid red;
+}
+
+main article.pago div h3{
+    width: 60%;
+}
+
+main article.pago div i{
+    font-size: 50px;
+    width: 35%;
+}
+
+main article.pago div img{
+    width: 80px;
+}
+
+/* Nosotros */
+
+.main-empresa{
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto 0px auto;
+    justify-content: space-between;
+}
+
+.main-empresa .img img{
+    width: 100%;
+}
+div.text{
+    width: 100%;
+} 
+.text h1 { 
+    font-size: 16px;
+    margin-top:5px;
+    color:inherit;
+    font-weight: normal; 
+}
+.text h2 { 
+    font-size: 44px;
+    margin-bottom: 37px;
+    color:inherit;
+    font-weight: normal;
+}
+.text p { 
+    margin: 0px 5px;
+    font-size: 13px;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+
+/* User Edit */
+
+div.profile-user-edit div.im-user { 
+    display: flex;
+    flex-direction: column;
+}
+main.usuarios div.im-user div.img-user{
+    width: 90%;
+    align-self: center;
+}
+main.usuarios div.im-user div.img-user img { 
+    width: 70%;
+    border-radius: 50%;
+} 
+div.profile-user-edit div.img-form label { 
+    font-size: 13px;
+    margin:0px 10px 0px 10px;
+}
+main.usuarios div.form-izq,
+main.usuarios div.form-der { 
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px 0px 10px;
+}
+main.usuarios form div.form-izq input,
+main.usuarios form div.form-der input { 
+    margin-bottom: 7px;
+}
+main.usuarios div.form-izq{
+    margin-top: 10px ;
+}
+main.usuarios form button { 
+    margin:10px 10px 0px 10px;
+}
+@media (min-width:370px){
+    /* Header */
+
+    .logo{
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    /* header nav .header-container .burger-menu a,
+    header nav .header-container  div.login-home a {
+        font-size: 5vw;
+    } */
+
+    /* Footer */
+    .footer-Top .description { 
+        width: 35%;
+    }
+
+    .footer-Buttom {
+        min-width: 30%;
+    }
+
+    .footer-Buttom{
+        align-self: center;
+    }
+
+
+    .footer-Buttom .newsletter .box{
+        width: 220px;
+    }
+    
+    /* Home */
+
+    .products{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .products article{
+        width: 45%;
+    }
+
+    /*REGISTER*/
+
+    main .register .datos form{
+        flex-direction: row;/**/
+    }
+    
+    main .register .datos div{
+        width: 45%;
+        
+    }
+    main .register .datos{
+        flex-direction: row;
+        justify-content: center;
+        max-width: 700px;
+        margin: 20px;
+    }
+
+    main .register .datos .box{
+        width: 30%;
+    }
+
+    /* Product Detail */
+
+    div.slider-buttons-container{
+        display: none;
+    }
+
+    main article.prod-detail{ 
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+     article.prod-detail div.product-description { 
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    main article.prod-detail .img-container { 
+        width: 45%;
+    }
+    main article .img-sec,
+    main article .img-principal { 
+        display: flex;
+        margin-bottom: 10px;
+    }
+    main article div.product-description p.nombre-prod{
+        padding-top: 0px;
+    }
+    main article div.product-description div.description p.title { 
+        font-size: 20px;
+        font-weight: bold;
+        padding: 0px 10px 0px 0px ;
+    }
+    /*ProductList*/
+    main.productList .products{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    main.productList .products article{ 
+        width: 40%;
+    }
+    /*carrito 4*/
+
+    main article.adress{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    main article.pago{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    /* User Edit */
+    div.profile-user-edit div.im-user { 
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+    }
+    main.usuarios div.im-user div.img-user { 
+        width: 100%;
+        margin:0px 10px 0px 0px;
+    }
+    main.usuarios div.im-user div.img-form { 
+        width: 100%;
+    }
+}
+
+@media (min-width: 700px){
+    /* Header */
+    .logo{
+        width: 50px;
+    }
+    .container .list-container,
+    .container .IngresarRegistrarse{
+        display: block;
+    }
+    
+    div.burger-menu{
+        display: none;
+    }
+
+    div.login-home {
+        position: static;
+    }
+
+    div.login-home a {
+        font-size: 15px;
+        justify-content: flex-end;
+    }
+    header div .header-container div.login-home .IngresarRegistrarse a{
+        font-size: 13px;
+    }
+    header div.buscador2 { 
+        display: none;
+    }
+    header div.buscador { 
+        display: flex;
+        width: 70%;
+    }
+    header div.buscador form { 
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    /* Footer */
+    .footer-Top { 
+        flex-wrap: nowrap;
+    }
+    .footer-Top .description{
+        width: 25%;
+     }
+
+    .holis{
+        text-align: center;
+    }
+    
+    .contenedor-login{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .footer-Buttom {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .footer-Buttom article{
+        display: flex;
+        width: 40%;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    
+    /*Login*/
+    main.class_login section .cuerpo {
+        max-width: 1400px;
+        flex-direction: row;
+     }
+
+     main section .cuerpo .login {
+         float: left;
+     }
+     main section .cuerpo .register{
+         width:300px;
+          height:auto; 
+          float:left;
+           display:inline;
+     }
+      main section .cuerpo .register ul li{
+          margin: 2px;
+      }
+      main section .cuerpo .login{
+         display:inline-block
+      }
+      main section .cuerpo .register{
+         display:inline-block
+      }
+
+      main section .cuerpo article{
+        flex-direction: row;
+        width: 45%;
+    }
+    /*Register*/
+
+    /*Usuarios*/
+    
+    main.usuarios div.profile-user{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    
+    /* Product Detail */
+
+    main article.prod-detail div.img-container {
+        display: flex;
+        width: 49%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    main article div.img-principal,
+    main article div.img-sec{ 
+        width: 170px;
+        height: 250px;
+        margin: 0px;
+        flex-direction: row;
+        align-items: normal;
+    }
+    main article div.img-container img { 
+        box-shadow: 0px 0px white;        
+    }
+    main  div.Recomendaciones article.deMas { 
+        display: block;
+    }
+    main div.Recomendaciones article { 
+        width: 190px;
+    }
+    /*Product car*/
+    /*Product car2*/
+
+    main section .cuerpoCarrito {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+     }
+     main section .cuerpoCarrito .login {
+         float: left;
+         
+     }
+     main section .cuerpoCarrito .register{
+        width:300px;
+        height:auto; 
+        float:left;
+        display:inline;
+     }
+     
+      main section .cuerpoCarrito .login{
+         display:inline-block
+      }
+      main section .cuerpoCarrito .register{
+         display:inline-block
+      }
+     
+     
+     main section .cuerpoCarrito article{
+         flex-direction: row;
+     }
+
+    /*Product car3*/
+    main section div.form{
+        flex-direction: row;
+    }
+
+    div.form form { 
+        width: 35%;
+    }
+    
+    /* Home */
+    .products article{
+        width: 20%;
+    }
+
+    .products article:hover{
+        box-shadow: 0px 0px 10px rgb(100, 100, 100);
+    }
+    
+    section div .tittle-popu,
+    .estilos-productos { 
+        font-size: 3rem;
+    }
+    /* Empresa */
+    .main-empresa { 
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .main-empresa div.img,
+    .main-empresa div.text { 
+        width: 49%;
+    }
+
+    .text p { 
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    /* Creacion de Producto */
+    main div form fieldset label textarea.description{
+        width: 550px;
+        height: 250px;
+    }
+    /* Product List */
+    main.productList .products article { 
+        width: 20%;
+    }
+    /* User Edit */
+    main.usuarios div.profile-user-edit form { 
+        display: flex;
+    }
+    main.usuarios form div.im-user{ 
+        flex-direction: column;
+        width: 275px;
+    }
+    main.usuarios div.im-user div.img-user { 
+        margin: 0px ;
+    }
+    main.usuarios div.form-der { 
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 808px){
+    /*Local*/
+    main.locales div div .local-maps{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 808px){
+    main.locales div div .local-maps{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+}

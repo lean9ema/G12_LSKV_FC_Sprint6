@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include( '../partials/head') %>
+    
+    <body>
+    
+        <%- include('../partials/header') %>
+
+        <main class="usersList">
+            <h2 class="title"> Lista de Usuarios </h2>
+            <section class="users">
+                    <% users.forEach(element => { %>
+                        
+                            <article>
+                                <a href="/users/<%= element.id  %> ">
+                                    <% if(element.image != undefined){%>
+                                        <img src="/images/users/<%= element.image %>"> 
+                                    <% }else {%>
+                                        <img src="/images/users/default.png"> 
+                                    <% } %>   
+                                </a>
+                                <div class="description">
+                                    <h4> <%= element['user-name'] %> </h4>   
+                                    <p class="name"> <%=element.name %>  <%= element.surname %>  </p>
+                                    <p class="email"> <%= element.email %> </p>
+                                    <p class="birthday-date"><%= element.fNac %> </p>
+                                </div>
+                                <form action="/users/<%=element.id%>?_method=DELETE" method="POST">
+                                    <button type="submit" class="bt-delete">ELIMINAR</button>
+                                </form>
+                            </article>
+
+                    <% }) %>
+            </section>
+        </main>
+        <%- include('../partials/footer') %> 
+    </body>    
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include( '../partials/head') %>
+    <body>
+        <%- include('../partials/header') %>
+        <main class="charger">
+            <div>
+                <form action="/products/" method="POST" enctype="multipart/form-data">
+                    <fieldset class="form-prod-char">
+                        <legend class="legend-formulario">Crear producto</legend>
+                        
+                        <label for="name">Nombre:
+                            <input type="text" 
+                                id="name"
+                                name="name" 
+                                class="name"
+                                value="<%= locals.oldData ? oldData.name : null%>">
+                                <% if (locals.errors && errors.name){ %>
+                                    <div class="text-danger" style="width: 100%">
+                                        <%= errors.name.msg %> 
+                                    </div>
+                                <% } %>
+                        </label>
+                        
+                        <label for="price">Precio:
+                            <input type="number" 
+                                name="price" 
+                                id="price" 
+                                class="price"
+                                value="<%= locals.oldData ? oldData.price : null%>">
+                                <% if (locals.errors && errors.price){ %>
+                                    <div class="text-danger" style="width: 100%">
+                                        <%= errors.price.msg %> 
+                                    </div>
+                                <% } %>
+                        </label>
+                        
+                        <label for="category">Categoria: 
+                            <select name="category" id="category">
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category %>"><%= category %></option>
+                                <% }) %>
+                            </select>
+                            <% if (locals.errors && errors.category){ %>
+                                <div class="text-danger" style="width: 100%">
+                                    <%= errors.category.msg %> 
+                                </div>
+                            <% } %>
+                         </label>
+                        
+                        <label for="color">Colores:
+                            <div class="color">
+                                <% colours.forEach(colour => { %>
+                                    <div class="check-c-s">
+                                        <input class="chk" type="checkbox" value="<%=colour.cod %>" name="color" id="<%=colour.cod %>">
+                                        <label class="lbl" for = "<%=colour.cod %>">
+                                            <img src = "/images/colores/<%= colour.cod %>.jpg"">
+                                        </label> 
+                                    </div>    
+                                <% }) %>
+                            </div>
+                            <% if (locals.errors && errors.color) { %>
+                                <div class="text-danger" style="width: 100%">
+                                    <%= errors.color.msg %> 
+                                </div>
+                            <% } %>
+                        </label>
+                        
+                        <label for="sizes">Talles:
+                            <div class="size">
+                                <% sizes.forEach(size => { %>
+                                    <div class="check-size">
+                                        <input class="chk"type="checkbox" value="<%= size %>"  name="sizes" id ="<%= size %>">
+                                        <label class="lbl" for = "<%= size %>"><%= size %></label>
+                                    </div>
+                                <% }) %> 
+                            </div>
+                            <% if (locals.errors && errors.sizes) { %>
+                                <div class="text-danger" style="width: 100%">
+                                    <%= errors.sizes.msg %> 
+                                </div>
+                            <% } %>
+                        </label>
+
+                        <label for="image"> Ingrese la imagen principal:
+                            <input type="file" 
+                                id="image" 
+                                name="image">
+                                <% if (locals.errors && errors.image) { %>
+                                    <div class="text-danger" style="width: 100%">
+                                        <%= errors.image.msg %> 
+                                    </div>
+                                <% } %>
+                        </label>
+                        
+                        <label for="images">Imagenes secundarias:
+                            <input type="file" name="images" id="images" require multiple>
+                        </label>
+                            
+                         <label for="description">Descripción:
+                            <textarea name="description" 
+                                id="description" 
+                                cols="30" 
+                                rows="5" 
+                                class="description"><%= locals.oldData ? oldData.description : null%></textarea>
+                                <% if (locals.errors && errors.description) { %>
+                                    <div class="text-danger" style="width: 100%">
+                                        <%= errors.description.msg %> 
+                                    </div>
+                                <% } %>
+                        </label> 
+
+                        <div class="bt">
+                            <button type="submit" class="style-button">Crear</button>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </main>
+        <%- include('../partials/footer') %> 
+    </body>  

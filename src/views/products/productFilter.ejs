@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include( '../partials/head') %>
+    
+    <body>
+    
+        <%- include('../partials/header') %>
+
+        <main class="productList">
+            <h2 class="title2"> Lista de productos filtrados por:  <% Filtros.forEach((e,i,a) => { %> 
+                <% if (i == a.length - 1){ %>
+                    <%= e %> 
+                <%}else { %>
+                    <%=  e + " y "  %>
+                <%}});%> 
+            </h2>
+            <section class="products">
+                    <% productList.forEach(element => { %>
+                        
+                            <article>
+                                <a href="/products/<%= element.id  %> ">
+                                    <img src="/images/products/<%= element['img-pr'] %>">
+                                </a>
+                                <div class="descripcion">
+                                <h4> <%= element.name %> </h4>   
+                                <% if(element.category != undefined ){ %> 
+                                    <p class="cat"><%= element.category %> </p>
+                                <% }else {%>
+                                    <p class="cat"> <%= element.styles %> </p>
+                                <% } %> 
+                                <p class="precio">$<%= element.price %> </p>
+
+                                </div>
+                            </article>
+
+                    <% }) %>
+            </section>
+        </main>
+        <%- include('../partials/footer') %> 
+    </body>    
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include( '../partials/head') %>
+    
+    <body>
+    
+        <%- include('../partials/header') %>
+        <main class="charger">
+            <div>
+                <form action="?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <fieldset class="form-prod-char">
+                        <legend class="legend-formulario">Editar producto</legend>
+                        
+                        <label for="name">Nombre
+                            <input type="text" id = "name" value="<%=product.name %>" name="name">
+                        </label>
+                            
+                        
+                        <label for="price">Precio
+                            <input type="number" id="price" name="price" value="<%=product.price %>">
+                        </label>
+                        
+                        <label for="category">Categoria: 
+                            <select name="category" id="category">
+                                <% for(let i=0; i< categories.length; i++){ %>
+                                    <% if( categories[i] == product.category ){ %>
+                                        <option value="<%=categories[i]%>" selected><%=categories[i]%></option>
+                                    <% }else{ %>
+                                        <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                                    <% }; %>  
+                                <% }; %>  
+                            </select>
+                         </label>
+
+                       
+                         <label for="colours">Colores:
+                            <div class="color">
+                                
+                                <%  for(let i=0;i<colours.length;i++){ %>
+                                    <div class="check-c-s">
+                                    <% if( colours[i].cod == (product.colours).find(e=>e == colours[i].cod) ){ %>
+                                        <input class="chk" type="checkbox" value="<%=colours[i].cod %>" name="color" id="<%=colours[i].cod %>" checked>
+                                        <label class="lbl" for = "<%=colours[i].cod %>">
+                                            <img src = "/images/colores/<%= colours[i].cod %>.jpg"">
+                                        </label> 
+                                    <% }else{ %> 
+                                        <input class="chk" type="checkbox" value="<%=colours[i].cod %>" name="color" id="<%=colours[i].cod %>">
+                                        <label class="lbl" for = "<%=colours[i].cod %>">
+                                            <img src = "/images/colores/<%= colours[i].cod %>.jpg"">
+                                        </label> 
+                                    <% }; %>
+                                    </div>
+                                <% }; %>  
+
+                            </div>
+                        </label>
+                        
+                        <label>Talles:
+                            <div class="size">
+                                <% sizes.forEach(size => { %>
+                                    <div class="check-size">
+                                        <% if( size == (product.sizes).find(e=>e == size) ){ %>
+                                        <input class="chk"type="checkbox" value="<%= size %>"  name="sizes" id ="<%= size %>" checked>
+                                        <label class="lbl" for = "<%= size %>"><%= size %></label>
+                                        <% }else{ %> 
+                                            <input class="chk"type="checkbox" value="<%= size %>"  name="sizes" id ="<%= size %>">
+                                            <label class="lbl" for = "<%= size %>"><%= size %></label>
+                                        <% } %> 
+                                    </div>
+                                <% }) %> 
+                            </div>
+                        </label>
+
+                        <label for="image">Imagen principal:
+                            <img src="/images/products/<%= product['img-pr'] %>" alt="" width="50px">
+                            <input type="file" name="image" id="image">
+                        </label>
+
+                        <% if(product['img-se'][0] !=null ){ %> 
+                        <label for= "imgSec"> Marcar imagenes que se quedaran:
+                            <div class="color">
+                                <% for (let i =0; i< product['img-se'].length; i++){ %>
+                                    <div class="check-c-s">
+                                        <img src="/images/products/<%=product['img-se'][i]%>" width="50px">
+                                        <input type="checkbox" name ="imgSec" value="<%=product['img-se'][i]%>"> 
+                                    </div>
+                                <% } %>
+                            </div>
+                        </label>
+                        <% }; %> 
+
+                        <label for="images">Imagenes secundarias:
+                            <input type="file" name="images" id="images" multiple>
+                        </label>
+
+                        <label for="description">Descripción: 
+                            <textarea name="description" id="description" cols="30" rows="5" class="description"><%=product.description%></textarea>
+                        </label>
+
+                        <div class="bt">
+                            <input type="submit" value="Editar" class="style-button">
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </main>
+
+
+        <%- include('../partials/footer') %> 
+    </body>  

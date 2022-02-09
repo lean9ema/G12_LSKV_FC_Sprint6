@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include( '../partials/head') %>
+    
+    <body>
+        <%- include('../partials/header') %>
+        <main class="usuarios">
+            <h1 class="title">Edicion de usuario</h1>
+            <div class="profile-user-edit">
+                <form action="?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="im-user">
+                    <div class="img-user">
+                        <% if(element.image != undefined){%>
+                            <img src="/images/users/<%= element.image %>"> 
+                            <% }else {%>
+                            <img src="/images/users/default.png"> 
+                            <% } %>
+                    </div>
+                    <div class="img-form">
+                        <label for="img-default">Eliminar actual? </label>
+                        <input type="checkbox" name="img-default" id="img-default">
+                        <br>
+                        <label for="image">Desea cambiar la img o foto de perfil?</label>
+                        <input type="file" id="image" name="image">
+                    </div>
+                </div>
+                <div class="form-izq">
+                    <label for="user-name">Nombre de Usuario </label>
+                    <input type="text" name="user-name" id="user-name" value="<%= element['user-name']%>" >
+                    <label for="name">Nombre </label>
+                    <input type="text" name="name" id="name" value="<%= element.name%>">
+                    <label for="surname">Apellido </label>
+                    <input type="text" name="surname" id="surname" value="<%=element.surname%>">
+                </div>
+                <div class="form-der">
+                    <label for="email"> Email </label>
+                    <input type="email" name="email" id="email" value="<%=element.email%>">
+                    <label for="dni"> DNI </label>
+                    <input type="number" name="dni" id="dni" value="<%=element.dni%>">
+                    <label for="fNac">Fecha de Nacimiento</label>
+                    <input type="date" name="fNac" id="fNac" value="<%=element.fNac%>">
+                    <button type="submit" class="style-button">Guardar cambios</button>
+                </div>
+                </form>
+            </div>
+        </main>
+        <%- include('../partials/footer') %> 
+    </body>    
+</html>

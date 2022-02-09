@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head.ejs') %>
+    <body>
+        <%- include('../partials/header.ejs') %>
+        <main> 
+            <section class="caja">
+                <h4 class="title"> Tu carrito de Compras </h4>
+        
+                <article class="paso">
+                    <a href='/products/productCart'><h2>1</h2></a> 
+                    <h2 class="pasoDos">2</h2>
+                    <a href='/products/productCart3'><h2>3</h2></a>
+                    <a href='/products/productCart4'><h2>4</h2></a>
+                </article> 
+        
+                <div class="cuerpoCarrito">
+        
+                    <article class="login">
+                        
+                           <h2 class="izquierda">Iniciar sesion</h2>    
+                       <form action="/" method="POST">
+                           <div>
+                                <label for="fa-user">usuario</label>
+                     <input type="text" name="usuario" placeholder="Usuario" required>
+                           </div>
+        
+                           <div>
+                               <label for="password">contraseña</label>
+                     <input type="password" name="contraseña" placeholder="Contraseña" required>
+                           </div>
+                    
+                     
+                     <a href = "#" > ¿Has olvidado tu contraseña?</a>
+                     <button type="button" class="style-button">Ingresar</button>
+                   </form>
+        
+                </article>
+                <article class="register">
+                    <h3>Comprar como invitado</h3>
+                    <form action="/" method="post">
+                        <div>
+                            <label for="email">
+                                
+                                <input type="email" name="email" id="email" placeholder="Dirección de correo electronico" required >
+                            </label>
+                        </div>
+                        <div>
+                            <label for="password">
+                                Contraseña
+                                <input type="password" name="password" id="password" placeholder="Contraseña" required>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="nombre">
+                                Nombre
+                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="apellido">
+                                Apellido
+                                <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="dni">
+                                DNI
+                                <input type="number" name="dni" id="dni" placeholder="DNI" required>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="fNac">
+                                Fecha de nacimiento
+                                <input type="date" name="fNac" id="fNac" placeholder="Fecha de nacimiento">
+                            </label>
+                        </div>
+                        <button type="button" class="style-button">Continuar</button>
+                    </form>  
+        
+                </article>
+        
+               </div>
+             </section>
+
+        </main>   
+        <%- include('../partials/footer') %>
+    </body>
+</html>
