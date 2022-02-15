@@ -5,6 +5,7 @@ const sizes = ['XS','S','M','L','XL','XXL'];
 const colours = [{name:'Rojo',cod:'red'},{name:'Azul',cod:'blue'},{name:'Verde',cod:'green'},{name:'Negro',cod:'black'},{name:'Blanco',cod:'white'},{name:'pink',cod:'pink'}]
 const fs = require('fs');
 const path = require('path');
+const db=require("../database/models");
 
 const { validationResult } = require('express-validator');
 
@@ -16,8 +17,14 @@ const productController = {
     },
     
     list: (req,res) => {
-        const productList = productModel.readFile();
-        return res.render('products/productList', { productList })
+        //json
+      //  const productList = productModel.readFile();
+        //return res.render('products/productList', { productList })
+       db.productModel.findAll()
+       .then(function(productList){
+           res.render('products/productList', { productList })
+       })
+
     },
 
     create: (req,res) => {
@@ -172,13 +179,21 @@ const productController = {
         }
     },
     destroy: (req, res) =>{
-        let product = productModel.find(req.params.id)
+     /*   let product = productModel.find(req.params.id)
 		fs.unlinkSync(path.join(__dirname,`../../public/images/products/${product['img-pr']}`))
 		for(let i =0; i < product['img-se'].length ; i++){
             fs.unlinkSync(path.join(__dirname,`../../public/images/products/${product['img-se'][i]}`))
         };
         productModel.delete(req.params.id);
 		res.redirect('/products');
+    */
+    db.productModel.destroy({
+      where:{
+          id: req.params.id
+          
+      }
+    })
+    res.redirect("/products")
     }
 };
 

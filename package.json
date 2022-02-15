@@ -2,7 +2,7 @@
   "name": "G12_LSKV_FC_Sprint6",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,9 +18,19 @@
   },
   "homepage": "https://github.com/lean9ema/G12_LSKV_FC_Sprint6#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parse": "^0.4.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
+    "local-storage": "^2.0.0",
+    "method-override": "^3.0.0",
+    "multer": "^1.4.4",
     "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
     "sequelize": "^6.15.1"
   }
 }
