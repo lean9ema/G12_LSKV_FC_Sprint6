@@ -1,7 +1,7 @@
 const {body} = require('express-validator'); 
 const path = require('path');
-const jsonDB = require('../model/jsonUsersDataBase');
-const userModel = jsonDB('usersDataBase'); 
+//const jsonDB = require('../model/jsonUsersDataBase');
+//const userModel = jsonDB('usersDataBase'); 
 
 var fecha = new Date(); 
 var mes = fecha.getMonth() + 1;  

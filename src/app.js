@@ -5,10 +5,10 @@ const port = 3000;
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session=require("express-session");
-const logged = require ('./src/middlewares/user-logged');
+//const logged = require ('./src/middlewares/user-logged');
 
 app.set('view engine','ejs'); // Para "activar" ejs 
-app.set('views',path.resolve(__dirname, './src/views')); // No hace falta, cuando se tiene a views en la parte principal 
+app.set('views',path.resolve(__dirname, './views')); // No hace falta, cuando se tiene a views en la parte principal 
 
 app.use(express.static('public'));  // Para los archivos estáticos en el folder /public
 app.use(express.urlencoded({ extended: false }));
@@ -17,11 +17,11 @@ app.use(methodOverride('_method')); // Para poder pisar el method="POST" en el f
 app.use(cookieParser());
 app.use(session({secret:'secrets!!'}));
 //app.use(require('./src/middlewares/user-logged'));
-app.use(require('../src/middlewares/user-logged'))
+//app.use(require('../src/middlewares/user-logged'))
 
-const usersRoutes = require('./src/routers/userRoutes');
-const productRoutes = require('./src/routers/productRoutes');
-const homeRoutes = require('./src/routers/homeRoutes');
+const usersRoutes = require('./routers/userRoutes');
+const productRoutes = require('./routers/productRoutes');
+const homeRoutes = require('./routers/homeRoutes');
 const res = require('express/lib/response');
 
 app.use('/', homeRoutes);

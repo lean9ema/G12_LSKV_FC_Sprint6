@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { validationResult } = require('express-validator');
 
-const jsonDB = require('../model/jsonUsersDataBase');
-const userModel = jsonDB('usersDataBase');
+//const jsonDB = require('../model/jsonUsersDataBase');
+//const userModel = jsonDB('usersDataBase');
 const bcrypt = require('bcryptjs'); 
 
 const log = console.log; 
