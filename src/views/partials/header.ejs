@@ -17,9 +17,7 @@
             </div>
             <div class="login-home">
                 <a href="/products/productCart"><i class="fas fa-shopping-bag"></i></a>
-                <% if (user) { %> 
-                    <a href="/users/<%= user.id %> "><i class="fas fa-user"></i></a>
-                <% } %>
+                  
                     
             </div>
         </div>
@@ -34,26 +32,14 @@
                 <ul class="list-home">
                     <li><a href="/products">Productos</a></li>
                     <li><a href="/locals">Locales</a></li>
-                    <% if (user && user.rol == 1) { %>
-                        <li><a href="/products/create">Crear producto</a></li>
-                    <% } %>
+                    
                     <li><a href="/empresa">Empresa</a></li>
                     <li><a href="/contact">Contacto</a></li>
                 </ul>
             </div>
     
             <div class = "IngresarRegistrarse">
-                <% if (!user) { %> 
-                    <ul class="list-user">
-                        <li><a href="/users/login">Ingresar</a></li>
-                        <li> / </li>
-                        <li><a href="/users/register">Registrarse</a></li>
-                    </ul>
-                <% } else { %>
-                    <ul class="list-user">
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
-                <% } %> 
+                
             </div>
         </nav>
     </div>
