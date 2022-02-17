@@ -10,6 +10,7 @@ const db=require("../database/models");
 const { Op } = require("sequelize");
 const { validationResult } = require('express-validator');
 
+
 const productController = {
     prodDetail: (req,res) =>{
         let product = productModel.find(req.params.productId)
@@ -19,9 +20,9 @@ const productController = {
     
     list: (req,res) => {
         //json
-      //  const productList = productModel.readFile();
+        //const productList = productModel.readFile();
         //return res.render('products/productList', { productList })
-        console.log("ESTAMOS EN EL CONTROLER")
+        console.log("Entre a producto List")
        db.Products.findAll()
         .then(function(productList){
             console.log(productList);    
@@ -61,21 +62,26 @@ const productController = {
             if(req.files.images){ 
                 for(let i =0; i < req.files.images.length; i++) filenamesImgSec.push(req.files.images[i].filename);
             }
-            let aCrear = {
+            db.Products.create({
                 name: req.body.name,
                 price: Number(req.body.price),
                 description: req.body.description, 
-                stars: 0,
-                category: req.body.category,
-                'img-pr': req.files.image[0].filename, 
-                'img-se': filenamesImgSec
-            };
-            aCrear.colours = colorArray; 
-            aCrear.sizes = sizesArray;
-            console.log('aCrear: ');
-            console.log(aCrear);
-            productModel.create(aCrear);
-            return res.redirect('/products'); 
+                idstars: 1,
+                idcategory: 1,
+                idColour: 1,
+                idSize:1
+            })
+            .then(res => {
+                console.log("Creando producto" ,res)
+                console.log("id del producto",res.dataValues.id)
+                db.Image_product.create({
+                    urlName: req.files.image[0].filename,
+                    idproducts: res.dataValues.id
+                })
+                .then(res=>console.log("imagen",res))
+            })
+            .catch(err => console.log(err))
+            return res.redirect('/'); 
         }
     },
     
