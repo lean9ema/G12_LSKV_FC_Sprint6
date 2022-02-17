@@ -20,6 +20,7 @@ const productController = {
         //json
         //const productList = productModel.readFile();
         //return res.render('products/productList', { productList })
+        console.log("Entre a producto List")
        db.Products.findAll()
        .then(function(productList){
            res.render('products/productList', { productList })
