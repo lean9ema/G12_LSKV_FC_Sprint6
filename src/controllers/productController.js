@@ -2,11 +2,12 @@
 //const productModel = jsonDB('productsDataBase');
 const categories = ["Blusas", "Remeras", "Vestidos", "Monos", "Shorts", "Faldas", "Jeans"];
 const sizes = ['XS','S','M','L','XL','XXL'];
+const styles = ['Casual','Hipster','Trendy',"Minimalista"];
 const colours = [{name:'Rojo',cod:'red'},{name:'Azul',cod:'blue'},{name:'Verde',cod:'green'},{name:'Negro',cod:'black'},{name:'Blanco',cod:'white'},{name:'pink',cod:'pink'}]
 const fs = require('fs');
 const path = require('path');
 const db=require("../database/models");
-
+const { Op } = require("sequelize");
 const { validationResult } = require('express-validator');
 
 const productController = {
@@ -130,14 +131,35 @@ const productController = {
     },
     filter: (req,res)=>{ 
         const query = req.query; 
+        console.log("Controller Filter: ",query);
         const aFiltrar = Object.values(query);
-        let filtrado;
         if (Object.keys(query)[0].indexOf('styles') == 0 ){ 
-            filtrado = productModel.filterFroStyle(aFiltrar);
+            db.Products.findAll({
+                where:{
+                    idStyle: styles.indexOf(query.styles)
+                }
+            })
+            .then(prods=>{
+                console.log("Aca van los productos",prods);
+                return res.render('products/productfilter',{productList: prods, Filtros: aFiltrar});
+            })
+            .catch(err=> console.log(err))
         }else{
-            filtrado = productModel.filterForCategories(aFiltrar);
+            db.Products.findAll({
+                where:{
+                    [Op.or]: [
+                        { idCategory: categories.indexOf(query.category)+1 },
+                        { idCategory: categories.indexOf(query.category1)+1 }, 
+                        { idCategory: categories.indexOf(query.category2)+1 }
+                      ]
+                }
+            })
+            .then(prods=>{
+                console.log("Aca van los productos",prods);
+                return res.render('products/productfilter',{productList: prods, Filtros: aFiltrar});
+            })
+            .catch(err=> console.log(err))
         }
-        return res.render('products/productfilter',{productList: filtrado, Filtros: aFiltrar});
     },
     prodCart: function (req,res){
         console.log(req.params.id)
