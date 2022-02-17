@@ -17,19 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       }),
       Products.belongsTo(models.Styles,{
         as: "Styles", 
-        foreignKey: "idStyles" 
+        foreignKey: "idStyle" 
        }),
       Products.belongsTo(models.Colours,{
         as: "Colours", 
-        foreignKey: "idColours" 
+        foreignKey: "idColour" 
        }),
        Products.belongsTo(models.Sizes,{
         as: "Sizes", 
-        foreignKey: "idSizes" 
-       }),
-       Products.belongsTo(models.Image_product,{
-        as: "Image_product", 
-        foreignKey: "idSizes" 
+        foreignKey: "idSize" 
        }),
        Products.belongsTo(models.Visibility,{
         as: "Visibility", 
@@ -37,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
        }),
        Products.belongsTo(models.Stars,{
         as: "Stars", 
-        foreignKey: "idStars" 
+        foreignKey: "idStar" 
        }),
        Products.hasMany(models.Image_product,{
         as: "ImageProduct", 
-        foreignKey: "idProducts" 
+        foreignKey: "idProduct" 
        })
 
     }

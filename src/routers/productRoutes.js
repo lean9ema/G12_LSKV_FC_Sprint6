@@ -10,7 +10,7 @@ const validatorProd = require('../middlewares/product-validator');
 router.get('/', productController.list);
 
 router.get('/create',productController.create);
-//router.post('/',upload.fields([{name: 'image'},{name: 'images'}]), validatorProd, productController.store);
+router.post('/',upload.fields([{name: 'image'},{name: 'images'}]), validatorProd, productController.store);
 
 // mediante res query
 //router.get('/filter', productController.filter);
