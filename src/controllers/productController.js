@@ -20,11 +20,13 @@ const productController = {
         //json
       //  const productList = productModel.readFile();
         //return res.render('products/productList', { productList })
+        console.log("ESTAMOS EN EL CONTROLER")
        db.Products.findAll()
-       .then(function(productList){
-           res.render('products/productList', { productList })
-       })
-
+        .then(function(productList){
+            console.log(productList);    
+            res.render('products/productList', { productList });
+        })
+        .catch(err => console.log(err));
     },
 
     create: (req,res) => {
