@@ -18,9 +18,9 @@ const productController = {
     
     list: (req,res) => {
         //json
-      //  const productList = productModel.readFile();
+        //const productList = productModel.readFile();
         //return res.render('products/productList', { productList })
-       db.productModel.findAll()
+       db.Products.findAll()
        .then(function(productList){
            res.render('products/productList', { productList })
        })
