@@ -1,14 +1,22 @@
 //const jsonDB = require('../model/jsonProductsDataBase');
 //const productModel = jsonDB('productsDataBase');
-const categories = ["Blusas", "Remeras", "Vestidos", "Monos", "Shorts", "Faldas", "Jeans"];
-const sizes = ['XS','S','M','L','XL','XXL'];
-const styles = ['Casual','Hipster','Trendy',"Minimalista"];
-const colours = [{name:'Rojo',cod:'red'},{name:'Azul',cod:'blue'},{name:'Verde',cod:'green'},{name:'Negro',cod:'black'},{name:'Blanco',cod:'white'},{name:'pink',cod:'pink'}]
+//const categories = ["Blusas", "Remeras", "Vestidos", "Monos", "Shorts", "Faldas", "Jeans"];
+//const sizes = ['XS','S','M','L','XL','XXL'];
+//const styles = ['Casual','Hipster','Trendy',"Minimalista"];
+//const colours = [{name:'Rojo',cod:'red'},{name:'Azul',cod:'blue'},{name:'Verde',cod:'green'},{name:'Negro',cod:'black'},{name:'Blanco',cod:'white'},{name:'pink',cod:'pink'}]
 const fs = require('fs');
 const path = require('path');
 const db=require("../database/models");
 const { Op } = require("sequelize");
-const { validationResult } = require('express-validator');
+const { validationResult } = require('express-validator'); 
+db.Categorys.findAll()
+.then(res => categories = res)
+db.Sizes.findAll()
+.then(res => sizes = res)
+db.Styles.findAll()
+.then(res => styles = res)
+db.Colours.findAll()
+.then(res => colours = res)
 
 
 const productController = {
@@ -32,6 +40,7 @@ const productController = {
     },
 
     create: (req,res) => {
+        console.log("Aca van los colores",colours);
         return res.render("products/productCreate",{sizes,colours,categories})
     },
 
@@ -67,9 +76,9 @@ const productController = {
                 price: Number(req.body.price),
                 description: req.body.description, 
                 idstars: 1,
-                idcategory: 1,
-                idColour: 1,
-                idSize:1
+                idcategory: req.body.category,
+                idColour: colorArray[0],
+                idSize:sizesArray[0]
             })
             .then(res => {
                 console.log("Creando producto" ,res)
