@@ -21,13 +21,13 @@
                             <a href="#"><i class="fas fa-chevron-right"></i></a>
                         </div> 
                     </div>
-                    <% if(product['img-se'].length > 1){ %> 
+                    <!-- <% if(product['img-se'].length > 1){ %> 
                         <% product['img-se'].forEach(img => { %>
                             <div class="img-sec">
                                 <img src = "/images/products/<%=img%>">
                             </div>    
                         <% }); %> 
-                    <% } %> 
+                    <% } %>  -->
                 </div>
 
                 <div class="product-description">
@@ -37,7 +37,7 @@
                         <div class="score">
                             <% for( let index = 1; index <= 5; index++ ) { %>
 
-                                <% if (index <= product.stars) { %>
+                                <% if (index <= product.idStar) { %>
                                     <i class="far fa-star" style="color: #d4b073;"></i>
                                  
                                 <% }else { %>
@@ -47,7 +47,7 @@
                             <% } %> 
 
                         </div>
-                        <% if(product.stars == 0){ %>
+                        <% if(product.idStar == 0){ %>
                             <p>0 Reviews </p>  
                         <%}else{ %> 
                             <p> 127437 Reviews </p>
@@ -59,7 +59,7 @@
                     <form action="/products/<%= product.id %>/prodCart" method="POST">
                     
                         <div class="color"> <!-- agregar al objeto una array de colores y iterarlos con un foreach-->
-                            <% product.colours.forEach(element => { %>
+                            <% product.idColour.forEach(element => { %>
                                 <div class="check-c-s">
                                     <input class="chk" type="checkbox" value="<%= element %>" name="color" id="<%= element %>">
                                     <label class="lbl" for = "<%= element %>">
@@ -113,7 +113,7 @@
                 <p class= "title-recom"> Tambien te puede gustar </p>
             </div>
 
-            <div class="Recomendaciones">
+            <!-- <div class="Recomendaciones">
                 <% for( let index = 0; index < 4 && productList.length; index++ ) { %>
                     <article>
                         <a href="/products/<%= productList[index].id  %>">
@@ -123,7 +123,7 @@
                         <p class="price">$<%= productList[index].price %> </p>
                     </article>
                 <% } %>
-            </div>
+            </div> -->
 
         </main>
 
