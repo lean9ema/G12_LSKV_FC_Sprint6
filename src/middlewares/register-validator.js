@@ -2,6 +2,8 @@ const {body} = require('express-validator');
 const path = require('path');
 //const jsonDB = require('../model/jsonUsersDataBase');
 //const userModel = jsonDB('usersDataBase'); 
+var db = require('../database/models');
+const { Op } = require("sequelize");
 
 var fecha = new Date(); 
 var mes = fecha.getMonth() + 1;  
@@ -19,15 +21,15 @@ const validator = [
     body('email').notEmpty().withMessage('Debes escribir un correo electrónico').bail()
         .isEmail().withMessage('Debes escribir un formato de correo válido').bail()
         .custom((value, {req})=>{
-            var email = req.body.email; 
-            var users = userModel.all();
-            var emails = [];
-            users.forEach(user => {
-                emails.push(user.email);
-            }); 
-            console.log(emails);
-            console.log(email);
-            if(emails.includes(email)) throw new Error('El un email ya registrado debe ingresar otro')
+            db.Users.findOne({
+                where:{
+                    email:req.body.email
+                }
+            }) 
+            .then(user => {
+                console.log(user);
+            })
+            // if() throw new Error('El un email ya registrado debe ingresar otro')
             return true;
         }),
 

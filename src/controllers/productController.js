@@ -18,7 +18,6 @@ db.Styles.findAll()
 db.Colours.findAll()
 .then(res => colours = res)
 
-
 const productController = {
     prodDetail: (req,res) =>{
         db.Products.findByPk(req.params.productId)
@@ -26,7 +25,26 @@ const productController = {
             console.log("Aca va el PRODUCTO",product);
             console.log("Aca va ID",product.id);
             console.log("Aca va C",product.idColour);
-            return res.render("products/productDetail",{ product })    
+            db.Colours.findByPk(product.idColour)
+            .then(color=> {
+                let url_color = color.urlColour
+                db.Sizes.findByPk(product.idColour)
+                .then(size=> {
+                    let talle = size.name
+                    db.Image_product.findOne({
+                        where:{idproducts:product.id}
+                    })
+                    .then(image=>{
+                        console.log(image);
+                        let url_image = image.urlName;
+                        console.log(url_image);
+                        return res.render("products/productDetail",{product,
+                             url_color, talle, url_image})
+                    })
+                    .catch(err => console.log("Este es de IMAGE",err));        
+                })
+            })    
+            .catch(err => console.log(err));
         })
         .catch(err => console.log(err));
     },

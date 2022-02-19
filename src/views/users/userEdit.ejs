@@ -10,11 +10,11 @@
                 <form action="?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="im-user">
                     <div class="img-user">
-                        <% if(element.image != undefined){%>
-                            <img src="/images/users/<%= element.image %>"> 
-                            <% }else {%>
-                            <img src="/images/users/default.png"> 
-                            <% } %>
+                        <% if(img== null){ %>
+                            <img src=/images/users/default.png > 
+                        <%}else{%>
+                            <img src=/images/users/<%=img.url_name%>>                         
+                        <% } %>   
                     </div>
                     <div class="img-form">
                         <label for="img-default">Eliminar actual? </label>
@@ -26,11 +26,11 @@
                 </div>
                 <div class="form-izq">
                     <label for="user-name">Nombre de Usuario </label>
-                    <input type="text" name="user-name" id="user-name" value="<%= element['user-name']%>" >
+                    <input type="text" name="user-name" id="user-name" value="<%= element['userName']%>" >
                     <label for="name">Nombre </label>
                     <input type="text" name="name" id="name" value="<%= element.name%>">
                     <label for="surname">Apellido </label>
-                    <input type="text" name="surname" id="surname" value="<%=element.surname%>">
+                    <input type="text" name="surname" id="surname" value="<%=element.lastName%>">
                 </div>
                 <div class="form-der">
                     <label for="email"> Email </label>
@@ -38,7 +38,7 @@
                     <label for="dni"> DNI </label>
                     <input type="number" name="dni" id="dni" value="<%=element.dni%>">
                     <label for="fNac">Fecha de Nacimiento</label>
-                    <input type="date" name="fNac" id="fNac" value="<%=element.fNac%>">
+                    <input type="date" name="fNac" id="fNac" value="<%=element.date_of_birth%>">
                     <button type="submit" class="style-button">Guardar cambios</button>
                 </div>
                 </form>
