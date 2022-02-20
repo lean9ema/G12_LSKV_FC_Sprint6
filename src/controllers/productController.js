@@ -41,7 +41,7 @@ const productController = {
 
     create: (req,res) => {
         console.log("Aca van los colores",colours);
-        return res.render("products/productCreate",{sizes,colours,categories})
+        return res.render("products/productCreate",{sizes,colours,styles,categories})
     },
 
     store: (req,res)=>{
@@ -95,54 +95,85 @@ const productController = {
     },
     
     edition: (req,res) => {
-        let product=productModel.find(req.params.id);
-        return res.render("products/productEdition", {product,categories,colours,sizes,})
+        //let product=productModel.find(req.params.id);
+        db.Products.findByPk(req.params.id)
+        .then(resP => {
+            let product = resP
+            db.Image_product.findOne({where:{idproducts : req.params.id}})
+            .then(resI =>  {
+                let imgP = resI
+                return res.render("products/productEdition", {product,categories,colours,sizes,imgP})
+            })
+            .catch(err => console.log("imagen",err))
+            
+        })
+        .catch(err => console.log("producto",err))
+        
     },
 
     prodEdition: (req,res)=>{
-      let product = productModel.find(req.params.id)
-      let imgP = product['img-pr'];
-      let colorArray = req.body.colours;
-      let sizesArray = req.body.sizes;
-      if(!Array.isArray(req.body.colours)) colorArray = [req.body.colours];
-      if(!Array.isArray(req.body.sizes)) sizesArray = [req.body.sizes];  
+      //let product = productModel.find(req.params.id)
+      let pProd = db.Products.findByPk(req.params.id)
+        .then(resP => {
+            let product = resP
+            db.Image_product.findOne({where:{idproducts : req.params.id}})
+            .then(resI =>  {
+                let imgP = resI.urlName
+                let colorArray = req.body.colours;
+                let sizesArray = req.body.sizes;
+                if(!Array.isArray(req.body.colours)) colorArray = [req.body.colours];
+                if(!Array.isArray(req.body.sizes)) sizesArray = [req.body.sizes];  
 
-      let imgSecArray = req.body.imgSec;
-      if(!Array.isArray(req.body.imgSec)) imgSecArray = [req.body.imgSec];
-      console.log('Aca va Files: ');
-      console.log(req.files);
-      if (req.files.image){
-        fs.unlinkSync(path.join(__dirname,`../../public/images/products/${product['img-pr']}`))
-        imgP = req.files.image[0].filename;
-      }
-      if (req.files.images){
-        product['img-se'].forEach(img => {
-            if ( ! imgSecArray.find( imagen => imagen ==  img) ){
-                console.log("Elimina la imagen", img )
-                fs.unlinkSync(path.join(__dirname,`../../public/images/products/${img}`))
-            }
-        });
-        for(let i =0; i < req.files.images.length; i++) imgSecArray.push(req.files.images[i].filename);
-      }
-      console.log('Aca va BODY: ');
-      console.log(req.body);
-      let productBody={
-        id: Number(req.params.id),
-        name: req.body.name,
-        price: Number(req.body.price) ,
-        description: req.body.description ,
-        category: req.body.category,
-        colours: colorArray,
-        sizes: sizesArray,
-        stars: Number(product.stars),
-        'img-pr': imgP,
-        'img-se': imgSecArray
-    };
-    console.log("Aca va req.files: ");
-    console.log(req.files);
-    productModel.update(productBody);
-
-    res.redirect(`/products/${product.id}`);
+                let imgSecArray = req.body.imgSec;
+                if(!Array.isArray(req.body.imgSec)) imgSecArray = [req.body.imgSec];
+                console.log('Aca va Files: ');
+                console.log(req.files);
+                if (req.files.image){
+                    fs.unlinkSync(path.join(__dirname,`../../public/images/products/${imgP.urlName}`))
+                    imgP = req.files.image[0].filename;
+                }
+                if (req.files.images){
+                    product['img-se'].forEach(img => {
+                        if ( ! imgSecArray.find( imagen => imagen ==  img) ){
+                            console.log("Elimina la imagen", img )
+                            fs.unlinkSync(path.join(__dirname,`../../public/images/products/${img}`))
+                        }
+                    });
+                    for(let i =0; i < req.files.images.length; i++) imgSecArray.push(req.files.images[i].filename);
+                }
+                console.log('Aca va BODY: ');
+                console.log(req.body);
+                    db.Products.update(
+                    {
+                        name: req.body.name,
+                        price: Number(req.body.price),
+                        description: req.body.description, 
+                        idstars: 1,
+                        idcategory: req.body.category,
+                        idColour: colorArray[0],
+                        idSize:sizesArray[0]
+                    },
+                    {
+                        where: {id: product.id}
+                    })
+                    .then(()=>{
+                        db.Image_product.create({
+                            urlName: imgP,
+                            idproducts: product.id
+                        })
+                        .then(resImg=>
+                            {
+                                console.log("imagen",resImg)
+                                res.redirect(`/products`);
+                            })
+                    })
+                        })
+                        .catch(err => console.log("imagen",err))
+            
+        })
+        .catch(err => console.log("producto",err))
+      
+    
     },
     filter: (req,res)=>{ 
         const query = req.query; 

@@ -47,13 +47,20 @@
                                 </div>
                             <% } %>
                          </label>
+                         <label for="Style">Estilos: 
+                            <select name="Style" id="Style">
+                                <% styles.forEach(style => { %>
+                                    <option value="<%= style.id %>"><%= style.name %></option>
+                                <% }) %>
+                            </select>
+                         </label>
                         
                         <label for="color">Colores:
                             <div class="color">
                                 <% colours.forEach(colour => { %>
                                     <div class="check-c-s">
-                                        <input class="chk" type="checkbox" value="<%=colour.id %>" name="color" id="<%=colour.id %>">
-                                        <label class="lbl" for = "<%=colour.id %>">
+                                        <input class="chk" type="checkbox" value="<%=colour.id %>" name="color" id="colour<%=colour.id %>">
+                                        <label class="lbl" for = "colour<%=colour.id %>">
                                             <img src = "/images/colores/<%= colour.urlColour %>.jpg"">
                                         </label> 
                                     </div>    
@@ -70,8 +77,8 @@
                             <div class="size">
                                 <% sizes.forEach(size => { %>
                                     <div class="check-size">
-                                        <input class="chk"type="checkbox" value="<%= size.id %>"  name="sizes" id ="<%= size.id %>">
-                                        <label class="lbl" for = "<%= size.id %>"> <%= size.name %></label>
+                                        <input class="chk"type="checkbox" value="<%= size.id %>"  name="sizes" id ="size<%= size.id %>">
+                                        <label class="lbl" for = "size<%= size.id %>"> <%= size.name %></label>
                                     </div>
                                 <% }) %> 
                             </div>
