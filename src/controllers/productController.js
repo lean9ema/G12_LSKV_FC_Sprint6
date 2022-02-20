@@ -18,12 +18,35 @@ db.Styles.findAll()
 db.Colours.findAll()
 .then(res => colours = res)
 
-
 const productController = {
     prodDetail: (req,res) =>{
-        let product = productModel.find(req.params.productId)
-        const productList = productModel.readFile();
-        return res.render("products/productDetail",{ product,productList })    
+        db.Products.findByPk(req.params.productId)
+        .then(product=>{
+            console.log("Aca va el PRODUCTO",product);
+            console.log("Aca va ID",product.id);
+            console.log("Aca va C",product.idColour);
+            db.Colours.findByPk(product.idColour)
+            .then(color=> {
+                let url_color = color.urlColour
+                db.Sizes.findByPk(product.idColour)
+                .then(size=> {
+                    let talle = size.name
+                    db.Image_product.findOne({
+                        where:{idproducts:product.id}
+                    })
+                    .then(image=>{
+                        console.log(image);
+                        let url_image = image.urlName;
+                        console.log(url_image);
+                        return res.render("products/productDetail",{product,
+                             url_color, talle, url_image})
+                    })
+                    .catch(err => console.log("Este es de IMAGE",err));        
+                })
+            })    
+            .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
     },
     
     list: (req,res) => {
@@ -31,12 +54,12 @@ const productController = {
         //const productList = productModel.readFile();
         //return res.render('products/productList', { productList })
         console.log("Entre a producto List")
-       db.Products.findAll()
-        .then(function(productList){
-            console.log(productList);    
-            res.render('products/productList', { productList });
-        })
-        .catch(err => console.log(err));
+        db.Products.findAll()
+            .then(function(productList){
+                console.log(productList);    
+                res.render('products/productList', { productList });
+            })
+            .catch(err => console.log(err));
     },
 
     create: (req,res) => {

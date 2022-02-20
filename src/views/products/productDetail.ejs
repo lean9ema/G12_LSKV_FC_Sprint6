@@ -10,7 +10,7 @@
             <article class="prod-detail">
                 <div class="img-container">
                     <div class="img-principal">
-                        <img src = "/images/products/<%= product['img-pr'] %> ">
+                        <img src = "/images/products/<%=url_image%> ">
                     </div>
 
                     <div class="slider-buttons-container"> 
@@ -21,13 +21,7 @@
                             <a href="#"><i class="fas fa-chevron-right"></i></a>
                         </div> 
                     </div>
-                    <% if(product['img-se'].length > 1){ %> 
-                        <% product['img-se'].forEach(img => { %>
-                            <div class="img-sec">
-                                <img src = "/images/products/<%=img%>">
-                            </div>    
-                        <% }); %> 
-                    <% } %> 
+
                 </div>
 
                 <div class="product-description">
@@ -37,7 +31,7 @@
                         <div class="score">
                             <% for( let index = 1; index <= 5; index++ ) { %>
 
-                                <% if (index <= product.stars) { %>
+                                <% if (index <= product.idStar) { %>
                                     <i class="far fa-star" style="color: #d4b073;"></i>
                                  
                                 <% }else { %>
@@ -47,7 +41,7 @@
                             <% } %> 
 
                         </div>
-                        <% if(product.stars == 0){ %>
+                        <% if(product.idStar == 0){ %>
                             <p>0 Reviews </p>  
                         <%}else{ %> 
                             <p> 127437 Reviews </p>
@@ -59,23 +53,23 @@
                     <form action="/products/<%= product.id %>/prodCart" method="POST">
                     
                         <div class="color"> <!-- agregar al objeto una array de colores y iterarlos con un foreach-->
-                            <% product.colours.forEach(element => { %>
+                            
                                 <div class="check-c-s">
-                                    <input class="chk" type="checkbox" value="<%= element %>" name="color" id="<%= element %>">
-                                    <label class="lbl" for = "<%= element %>">
-                                        <img src = "/images/colores/<%= element %>.jpg"">
+                                    <input class="chk" type="checkbox" value="<%=product.idColour%>" name="color" id="colour">
+                                    <label class="lbl" for = "colour">
+                                        <img src = "/images/colores/<%=url_color%>.jpg">
                                     </label> 
                                 </div>
-                            <% }) %>
+                            
                         </div> 
 
                             <div class="size">
-                                <% product.sizes.forEach(element => { %>
+                                
                                     <div class="check-size">
-                                        <input class="chk"type="checkbox" value="<%= element %>"  name="sizes" id ="<%= element %>">
-                                        <label class="lbl" for = "<%= element %>"><%= element %></label>
+                                        <input class="chk" type="checkbox" value="<%=product.idSizes%>" name="sizes" id ="size">                                        
+                                        <label class="lbl" for = "size"> <%=talle%> </label> 
                                     </div> 
-                                <% }) %>
+                                 
                             </div>
 
                         <div class="cantidad">
@@ -95,16 +89,6 @@
                         <p class="content"> <%= product.description %> 
                         </p>
                     </div>
-                    <% if (user &&  user.rol == 1) { %>
-                        <div class="Botones"> 
-                            <form action="/products/<%=product.id%>/edit"style="display: inline-flex" class="delete">
-                                <button type="submit" class="style-button">Editar producto</button>
-                            </form>
-                            <form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex" class="delete">
-                                <button type="submit" class="action-button delete style-button">ELIMINAR</button>
-                            </form>
-                        </div>
-                    <% } %>
                     
                 </div> 
             </article>
@@ -113,17 +97,6 @@
                 <p class= "title-recom"> Tambien te puede gustar </p>
             </div>
 
-            <div class="Recomendaciones">
-                <% for( let index = 0; index < 4 && productList.length; index++ ) { %>
-                    <article>
-                        <a href="/products/<%= productList[index].id  %>">
-                            <img src = "/images/products/<%= productList[index]['img-pr'] %>">
-                        </a>
-                        <p class="name"><%= productList[index].name %> </p>
-                        <p class="price">$<%= productList[index].price %> </p>
-                    </article>
-                <% } %>
-            </div>
 
         </main>
 

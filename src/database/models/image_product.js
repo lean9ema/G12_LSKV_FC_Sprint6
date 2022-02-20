@@ -25,4 +25,4 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Image_product',
   });
   return Image_product;
-};
+};    
