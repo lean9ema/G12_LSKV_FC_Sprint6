@@ -56,8 +56,10 @@ const productController = {
         console.log("Entre a producto List")
         db.Products.findAll()
             .then(function(productList){
-                console.log(productList);    
+                console.log(productList)
+                then("image_product")  
                 res.render('products/productList', { productList });
+                
             })
             .catch(err => console.log(err));
     },
@@ -252,6 +254,7 @@ const productController = {
     db.productModel.destroy({
       where:{
           id: req.params.id
+         // image: req.params.image
           
       }
     })
