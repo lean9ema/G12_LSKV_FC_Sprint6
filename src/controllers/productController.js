@@ -282,31 +282,16 @@ const productController = {
         }
     },
     destroy: (req, res) =>{
-   db.Image_product.findOne({
-       where: {idproducts:req.params.id}
-     })
-//  .then(a=>{
-   //  console.log("imagen a eliminar", a)
-   //  fs.unlinkSync(path.join(__dirname,`../../public/images/products/${a.urlName}`))
-      .then(db.Image_product.destroy({
-        where: { idproducts:req.params.id  }   
-       })
-       .then(
-        db.Products.destroy({
-            where:{id: req.params.id   }
-       })  )
-       
-       
-       ).catch(err=> console.log(err))
-    
-   
-   
-   
-     //} ).catch(err=> console.log("error de findOne ",err))
-     
- res.redirect("/products")
-}  
-};
+        db.Image_product.findOne({where:{idproducts:req.params.id}})
+        .then(ImgP =>{
+            console.log(path.join(__dirname,`../../public/images/products/${ImgP.urlName}`))
+            fs.unlinkSync(path.join(__dirname,`../../public/images/products/${ImgP.urlName}`))
+            db.Image_product.destroy({where:{idproducts:req.params.id}})
+                .then(db.Products.destroy({where:{id: req.params.id}}))
+        })
+    res.redirect("/")
+    }
+}
  
 
 
