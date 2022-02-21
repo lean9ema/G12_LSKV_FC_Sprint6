@@ -1,7 +1,11 @@
 //const user = require ('../model/jsonUsersDataBase');
-module.exports = (req,res,next) => {
+const db = require("../database/models");
 
-    let logged = null;
+module.exports = (req,res,next) => {
+    db.Users.findAll()
+     .then(resU => {
+        let  user = resU
+        let logged = null;
 
     if(req.cookie && req.cookie.email){
         logged = user.call().find(user => user.email === req.cookie.email)
@@ -15,4 +19,6 @@ module.exports = (req,res,next) => {
     res.locals.user = logged
 
     return next()
+        
+    })
 }

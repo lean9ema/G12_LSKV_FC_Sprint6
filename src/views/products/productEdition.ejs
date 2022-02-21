@@ -61,10 +61,10 @@
                                     <div class="check-size">
                                         <% if( size == (product.idSize)){ %>
                                         <input class="chk"type="checkbox" value="<%= size.id %>"  name="sizes" id ="size<%= size.id %>" checked>
-                                        <label class="lbl" for = "size<%= size %>"><%= size.name %></label>
+                                        <label class="lbl" for = "size<%= size.id %>"><%= size.name %></label>
                                         <% }else{ %> 
                                             <input class="chk"type="checkbox" value="<%= size.id %>"  name="sizes" id ="size<%= size.id %>">
-                                            <label class="lbl" for = "size<%= size %>"><%= size.name %></label>
+                                            <label class="lbl" for = "size<%= size.id %>"><%= size.name %></label>
                                         <% } %> 
                                     </div>
                                 <% }) %> 

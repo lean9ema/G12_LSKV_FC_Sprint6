@@ -3,6 +3,7 @@ const path = require('path');
 const { validationResult } = require('express-validator');
 let db = require('../database/models');
 const { Op } = require("sequelize");
+db.Users.findAll().then(res => users = res ).catch(err => console.log(" listado de usuarios", err))
 
 //const jsonDB = require('../model/jsonUsersDataBase');
 //const userModel = jsonDB('usersDataBase');
@@ -19,10 +20,9 @@ const usersController = {
 		//console.log(resultValidation.mapped());
 		//console.log(req.body.password);
 		if (resultValidation.isEmpty()) {
-			let users= userModel.all();
             let usuario=undefined;
 			for (let i=0; i<users.length; i++) {
-				if(users[i].email==req.body.email || users[i]['user-name']==req.body.email ){
+				if(users[i].email==req.body.email || users[i].userName==req.body.email ){
 					var esPass = bcrypt.compareSync(req.body.password,users[i].password);
 					if(esPass){
 						usuario=users[i];

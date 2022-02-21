@@ -26,6 +26,6 @@ router.get('/:productId', productController.prodDetail );
 router.put("/:id/edit",upload.fields([{name: 'image'},{name: 'images'}]), productController.prodEdition);
 router.get("/:id/edit", productController.edition);
 
-//router.delete('/:id', productController.destroy);
+router.delete('/:id', productController.destroy);
 
 module.exports = router;
