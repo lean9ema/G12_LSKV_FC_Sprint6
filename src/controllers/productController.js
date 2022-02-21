@@ -56,8 +56,18 @@ const productController = {
         console.log("Entre a producto List")
         db.Products.findAll()
             .then(function(productList){
-                console.log(productList);    
-                res.render('products/productList', { productList });
+                console.log(productList)
+                db.Image_product.findAll()
+                  .then(images=>{
+                      
+                      
+                res.render('products/productList', { productList, images});
+
+                  })
+               
+                
+             
+                
             })
             .catch(err => console.log(err));
     },
@@ -272,22 +282,35 @@ const productController = {
         }
     },
     destroy: (req, res) =>{
-     /*   let product = productModel.find(req.params.id)
-		fs.unlinkSync(path.join(__dirname,`../../public/images/products/${product['img-pr']}`))
-		for(let i =0; i < product['img-se'].length ; i++){
-            fs.unlinkSync(path.join(__dirname,`../../public/images/products/${product['img-se'][i]}`))
-        };
-        productModel.delete(req.params.id);
-		res.redirect('/products');
-    */
-    db.productModel.destroy({
-      where:{
-          id: req.params.id
-          
-      }
-    })
-    res.redirect("/products")
-    }
+   db.Image_product.findOne({
+       where: {idproducts:req.params.id}
+     })
+//  .then(a=>{
+   //  console.log("imagen a eliminar", a)
+   //  fs.unlinkSync(path.join(__dirname,`../../public/images/products/${a.urlName}`))
+      .then(db.Image_product.destroy({
+        where: { idproducts:req.params.id  }   
+       })
+       .then(
+        db.Products.destroy({
+            where:{id: req.params.id   }
+       })  )
+       
+       
+       ).catch(err=> console.log(err))
+    
+   
+   
+   
+     //} ).catch(err=> console.log("error de findOne ",err))
+     
+ res.redirect("/products")
+}  
 };
+ 
 
+
+  
+     
+   
 module.exports = productController;
