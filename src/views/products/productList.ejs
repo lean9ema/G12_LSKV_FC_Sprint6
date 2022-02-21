@@ -12,7 +12,13 @@
                     <% productList.forEach(element => { %>
                         
                             <article>
-                                <a href="/products/<%= element.id  %>"><img src="/images/products/<%= element['img-pr'] %>"></a>
+                               
+                                <% images.forEach(img => { %>
+                                     <% if (img.idproducts==element.id) { %>
+                                            <a href="/products/<%= element.id  %>"><img src="/images/products/<%= img.urlName %>"></a>
+                                     <% } %>
+                                <% }) %>
+
                                     <div class="descripcion">
                                         <p class="precio">$<%= element.price %> </p>
                                         <p> <%= element.name %> </p>   
