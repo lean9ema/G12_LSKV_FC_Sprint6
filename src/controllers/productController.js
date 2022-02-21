@@ -289,7 +289,7 @@ const productController = {
             db.Image_product.destroy({where:{idproducts:req.params.id}})
                 .then(db.Products.destroy({where:{id: req.params.id}}))
         })
-    res.redirect("/")
+    res.redirect("/products")
     }
 }
  

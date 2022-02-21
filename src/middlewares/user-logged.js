@@ -17,6 +17,7 @@ module.exports = (req,res,next) => {
     }
 
     res.locals.user = logged
+    console.log("usuario logeado",res.locals.user)
 
     return next()
         

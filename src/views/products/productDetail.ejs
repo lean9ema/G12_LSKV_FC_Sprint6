@@ -90,14 +90,16 @@
                         <p class="content"> <%= product.description %> 
                         </p>
                     </div>
-                    <div class="Botones"> 
-                        <form action="/products/<%=product.id%>/edit"style="display: inline-flex" class="delete">
-                            <button type="submit" class="style-button">Editar producto</button>
-                        </form>
-                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex" class="delete">
-                            <button type="submit" class="action-button delete style-button">ELIMINAR</button>
-                        </form>
-                    </div>
+                    <% if (user &&  user.idRoles == 1) { %>
+                        <div class="Botones"> 
+                            <form action="/products/<%=product.id%>/edit"style="display: inline-flex" class="delete">
+                                <button type="submit" class="style-button">Editar producto</button>
+                            </form>
+                            <form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex" class="delete">
+                                <button type="submit" class="action-button delete style-button">ELIMINAR</button>
+                            </form>
+                        </div>
+                    <% } %>
                     
                 </div> 
             </article>
