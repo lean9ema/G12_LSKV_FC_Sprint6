@@ -132,7 +132,7 @@ const productController = {
         db.Products.findByPk(req.params.id)
         .then(resP => {
             let product = resP
-            db.Image_product.findOne({where:{idproducts : req.params.id}})
+            db.Image_product.findOne({where:{idproducts: req.params.id}})
             .then(resI =>  {
                 let imgP = resI
                 return res.render("products/productEdition", {product,categories,colours,sizes,imgP})
