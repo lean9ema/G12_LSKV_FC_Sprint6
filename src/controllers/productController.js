@@ -59,15 +59,8 @@ const productController = {
                 console.log(productList)
                 db.Image_product.findAll()
                   .then(images=>{
-                      
-                      
                 res.render('products/productList', { productList, images});
-
                   })
-               
-                
-             
-                
             })
             .catch(err => console.log(err));
     },
@@ -146,7 +139,7 @@ const productController = {
 
     prodEdition: (req,res)=>{
       //let product = productModel.find(req.params.id)
-      let pProd = db.Products.findByPk(req.params.id)
+    db.Products.findByPk(req.params.id)
         .then(resP => {
             let product = resP
             db.Image_product.findOne({where:{idproducts : req.params.id}})
@@ -181,10 +174,11 @@ const productController = {
                         name: req.body.name,
                         price: Number(req.body.price),
                         description: req.body.description, 
-                        idstars: 1,
-                        idcategory: req.body.category,
+                        idStar: 1,
+                        idCategory: req.body.category,
+                        idStyles: req.body.Style,
                         idColour: colorArray[0],
-                        idSize:sizesArray[0]
+                        idSize: sizesArray[0]
                     },
                     {
                         where: {id: product.id}
@@ -205,12 +199,10 @@ const productController = {
                     })
                         })
                         .catch(err => console.log("imagen",err))
-            
         })
         .catch(err => console.log("producto",err))
-      
-    
     },
+
     filter: (req,res)=>{ 
         const query = req.query; 
         console.log("Controller Filter: ",query);
