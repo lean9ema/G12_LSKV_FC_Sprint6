@@ -190,9 +190,12 @@ const productController = {
                         where: {id: product.id}
                     })
                     .then(()=>{
-                        db.Image_product.create({
+                        db.Image_product.update({
                             urlName: imgP,
                             idproducts: product.id
+                        },
+                        {
+                            where: {idproducts: product.id}
                         })
                         .then(resImg=>
                             {
