@@ -8,7 +8,7 @@ const validations = require('../middlewares/register-validator');
 const validatorLogin=require('../middlewares/login-validator');
 
 router.get('/', usersController.list); 
-//router.delete('/:id',usersController.delete );
+router.delete('/:id',usersController.delete );
 router.get('/login',usersController.login); 
 router.post('/login',validatorLogin, usersController.session);
 

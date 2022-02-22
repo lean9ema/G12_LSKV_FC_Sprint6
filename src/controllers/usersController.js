@@ -87,10 +87,30 @@ const usersController = {
 		}
 	},
 	delete: function(req,res){
-		const user = userModel.find(req.params.id);
-		if (user.image != undefined) fs.unlinkSync(path.join(__dirname,`../../public/images/users/${user.image}`));
-		userModel.delete(user.id);
+	//	const user = userModel.find(req.params.id);
+	 db.Users.destroy({where: {id:req.params.id}})
+		
+	 db.Image_users.findOne({where:{idUsers:req.params.id}})
+	.then(imgU=>{
+		fs.unlinkSync(path.join(__dirname,`../../public/images/users/${ImgU.url_name}`))
+         db.Image_users.destroy({where: {idUsers:req.params.id}})
+
+	})
+	
+
+      
+
+	
+	
+	//if (user.image != undefined) fs.unlinkSync(path.join(__dirname,`../../public/images/users/${user.image}`));
+		//userModel.delete(user.id);
+		
+		
+		
 		return res.redirect('/users');
+
+
+
 	},
 
 	list: (req,res)=>{
@@ -134,6 +154,7 @@ const usersController = {
 		})
 	}, 
 	update: (req,res)=>{
+		console.log("UserName: ", req.body['user-name'])
 		db.Users.update({
 			userName: req.body['user-name'], 
 			name: req.body.name, 
