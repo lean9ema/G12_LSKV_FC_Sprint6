@@ -20,7 +20,6 @@ app.use(require('../src/middlewares/user-logged'))
 const usersRoutes = require('./routers/userRoutes');
 const productRoutes = require('./routers/productRoutes');
 const homeRoutes = require('./routers/homeRoutes');
-const res = require('express/lib/response');
 
 app.use('/', homeRoutes);
 app.use('/products', productRoutes);

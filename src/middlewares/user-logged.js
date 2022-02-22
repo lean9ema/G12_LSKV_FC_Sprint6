@@ -1,5 +1,4 @@
-//const user = require ('../model/jsonUsersDataBase');
-const db=require("../database/models");
+const db = require('../database/models');
 
 module.exports = (req,res,next) => {
     db.Users.findAll()
