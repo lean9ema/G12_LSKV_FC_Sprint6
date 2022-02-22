@@ -86,31 +86,18 @@ const usersController = {
 			return res.redirect(`/`);
 		}
 	},
+
 	delete: function(req,res){
 	//	const user = userModel.find(req.params.id);
-	 db.Users.destroy({where: {id:req.params.id}})
-		
-	 db.Image_users.findOne({where:{idUsers:req.params.id}})
+	db.Users.destroy({where: {id:req.params.id}})
+	db.Image_users.findOne({where:{idUsers:req.params.id}})
 	.then(imgU=>{
-		fs.unlinkSync(path.join(__dirname,`../../public/images/users/${ImgU.url_name}`))
-         db.Image_users.destroy({where: {idUsers:req.params.id}})
-
+		fs.unlinkSync(path.join(__dirname,`../../public/images/users/${imgU.url_name}`))
+        db.Image_users.destroy({where: {idUsers:req.params.id}})
+		return res.redirect('/users');
 	})
-	
-
-      
-
-	
-	
 	//if (user.image != undefined) fs.unlinkSync(path.join(__dirname,`../../public/images/users/${user.image}`));
 		//userModel.delete(user.id);
-		
-		
-		
-		return res.redirect('/users');
-
-
-
 	},
 
 	list: (req,res)=>{
