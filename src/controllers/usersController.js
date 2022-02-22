@@ -65,7 +65,7 @@ const usersController = {
 			console.log('contraEncritada:');
 			console.log(contraEncritada);
 			db.Users.create({
-				userName: req.body['user-name'], 
+				userName: req.body['userName'], 
 				name: req.body.name, 
 				email: req.body.email, 
 				dni: Number(req.body.dni), 
