@@ -33,7 +33,7 @@
             <div class = "list-container">
                 <ul class="list-home">
                     <li><a href="/products">Productos</a></li>
-                    <% if (user && user.rol == 1) { %>
+                    <% if (user && user.idRoles == 1) { %>
                         <li><a href="/products/create">Crear producto</a></li>
                     <% } %>
                     <li><a href="/locals">Locales</a></li>
