@@ -53,7 +53,7 @@
                             <div class="color">
                                 <%  for(let i=0;i<colours.length;i++){ %>
                                     <div class="check-c-s">
-                                    <% if( colours[i].id == product.idColour ){ %>
+                                    <% if(colours[i] == product.idColour ){ %>
                                         <input class="chk" type="checkbox" value="<%=colours[i].id %>" name="color" id="colour<%=colours[i].id %>"checked>
                                         <label class="lbl" for = "colour<%=colours[i].name %>">
                                             <img src = "/images/colores/<%= colours[i].urlColour %>.jpg">
