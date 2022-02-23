@@ -9,6 +9,7 @@ const path = require('path');
 const db=require("../database/models");
 const { Op } = require("sequelize");
 const { validationResult } = require('express-validator'); 
+const log = console.log;
 db.Categorys.findAll()
 .then(res => categories = res)
 db.Sizes.findAll()
@@ -101,10 +102,11 @@ const productController = {
                 name: req.body.name,
                 price: Number(req.body.price),
                 description: req.body.description, 
-                idstars: 1,
-                idcategory: req.body.category,
+                idStar: 1,
+                idCategory: req.body.category,
                 idColour: colorArray[0],
-                idSize:sizesArray[0]
+                idSize:sizesArray[0],
+                idStyle: req.body.Style
             })
             .then(res => {
                 console.log("Creando producto" ,res)
@@ -145,11 +147,12 @@ const productController = {
             db.Image_product.findOne({where:{idproducts : req.params.id}})
             .then(resI =>  {
                 let imgP = resI.urlName
-                let colorArray = req.body.colours;
+                let colorArray = req.body.color;
                 let sizesArray = req.body.sizes;
-                if(!Array.isArray(req.body.colours)) colorArray = [req.body.colours];
+                if(!Array.isArray(req.body.color)) colorArray = [req.body.color];
                 if(!Array.isArray(req.body.sizes)) sizesArray = [req.body.sizes];  
-
+                log("Aca color",colorArray); 
+                log("Aca va size", sizesArray)
                 let imgSecArray = req.body.imgSec;
                 if(!Array.isArray(req.body.imgSec)) imgSecArray = [req.body.imgSec];
                 console.log('Aca va Files: ');
@@ -169,6 +172,7 @@ const productController = {
                 }
                 console.log('Aca va BODY: ');
                 console.log(req.body);
+
                     db.Products.update(
                     {
                         name: req.body.name,
@@ -194,7 +198,7 @@ const productController = {
                         .then(resImg=>
                             {
                                 console.log("imagen",resImg)
-                                res.redirect(`/products`);
+                                res.redirect(`/products/${req.params.id}`);
                             })
                     })
                         })

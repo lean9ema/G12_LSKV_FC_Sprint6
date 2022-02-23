@@ -49,23 +49,27 @@
                             </select>
                          </label>
 
-                        <label for="colours">Colores:
+                        <label>Colores:
                             <div class="color">
-                                <%for(let i=0;i<colours.length;i++){ %>
+                                <% colours.forEach(colour=>{ %>
                                     <div class="check-c-s">
-                                    <% if(colours[i] == product.idColour ){ %>
-                                        <input class="chk" type="checkbox" value="<%=colours[i].id %>" name="color" id="colour<%=colours[i].id %>"checked>
-                                        <label class="lbl" for = "colour<%=colours[i].name %>">
-                                            <img src = "/images/colores/<%= colours[i].urlColour %>.jpg">
-                                        </label> 
+                                    <% if(colour.id == product.idColour){ %>
+                                        <input class="chk" 
+                                        type="checkbox"
+                                        value='<%=colour.id%>' 
+                                        name="color" 
+                                        id="colour<%=colour.id %>" checked>
+                                        <label class="lbl" for = "colour<%=colour.id %>">
+                                            <img src = "/images/colores/<%= colour.urlColour %>.jpg">
+                                        </label>
                                     <% }else{ %> 
-                                        <input class="chk" type="checkbox" value="<%=colours[i].id %>" name="color" id="colour<%=colours[i].id %>">
-                                        <label class="lbl" for = "colour<%=colours[i].id %>">
-                                            <img src = "/images/colores/<%= colours[i].urlColour %>.jpg">
+                                        <input class="chk" type="checkbox" value="<%=colour.id %>" name="color" id="colour<%=colour.id %>">
+                                        <label class="lbl" for = "colour<%=colour.id %>">
+                                            <img src = "/images/colores/<%= colour.urlColour %>.jpg">
                                         </label> 
                                     <% }; %>
                                     </div>
-                                <% }; %>  
+                                <% }) %>  
                             </div>
                         </label>
                         
