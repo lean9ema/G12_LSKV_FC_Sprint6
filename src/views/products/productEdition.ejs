@@ -25,7 +25,7 @@
                             value="<%=product.price %>">
                         </label>
                         
-                        <label for="category">Categoria: 
+                        <label for="category">Categoria:
                             <select name="category" id="category">
                                 <% categories.forEach(category => { %>
                                     <% if(category.id == product.idCategory){ %>
@@ -49,23 +49,19 @@
                             </select>
                          </label>
 
-                         <label for="colours">Colores:
+                        <label for="colours">Colores:
                             <div class="color">
-                                <%  for(let i=0;i<colours.length;i++){ %>
+                                <%for(let i=0;i<colours.length;i++){ %>
                                     <div class="check-c-s">
-                                    <% if( colours[i].id == product.idColour ){ %>
-                                        <input class="chk" 
-                                        type="checkbox" 
-                                        value="<%=colours[i].id %>" 
-                                        name="color" 
-                                        id="colour<%=colours[i].id %>" checked>
+                                    <% if(colours[i] == product.idColour ){ %>
+                                        <input class="chk" type="checkbox" value="<%=colours[i].id %>" name="color" id="colour<%=colours[i].id %>"checked>
                                         <label class="lbl" for = "colour<%=colours[i].name %>">
-                                            <img src = "/images/colores/<%= colours[i].urlColour %>.jpg"">
+                                            <img src = "/images/colores/<%= colours[i].urlColour %>.jpg">
                                         </label> 
                                     <% }else{ %> 
                                         <input class="chk" type="checkbox" value="<%=colours[i].id %>" name="color" id="colour<%=colours[i].id %>">
                                         <label class="lbl" for = "colour<%=colours[i].id %>">
-                                            <img src = "/images/colores/<%= colours[i].urlColour %>.jpg"">
+                                            <img src = "/images/colores/<%= colours[i].urlColour %>.jpg">
                                         </label> 
                                     <% }; %>
                                     </div>
@@ -116,3 +112,4 @@
 
         <%- include('../partials/footer') %> 
     </body>  
+</html>
