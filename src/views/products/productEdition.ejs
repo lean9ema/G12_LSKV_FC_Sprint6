@@ -12,30 +12,45 @@
                         <legend class="legend-formulario">Editar producto</legend>
                         
                         <label for="name">Nombre
-                            <input type="text" id = "name" value="<%=product.name %>" name="name">
+                            <input type="text" 
+                            id = "name" 
+                            value="<%=product.name %>" 
+                            name="name">
                         </label>
-                            
                         
                         <label for="price">Precio
-                            <input type="number" id="price" name="price" value="<%=product.price %>">
+                            <input type="number" 
+                            id="price" 
+                            name="price" 
+                            value="<%=product.price %>">
                         </label>
                         
                         <label for="category">Categoria:
                             <select name="category" id="category">
                                 <% categories.forEach(category => { %>
-                                    <% if( category == product.idCategory ){ %>
-                                        <option value="<%=category.id%>" selected><%=category.name%></option>
+                                    <% if(category.id == product.idCategory){ %>
+                                        <option value="<%=category.id%>" selected><%= category.name%></option>
                                     <% }else{ %>
-                                        <option value="<%=category.id%>"><%=categories.name%></option>
-                                    <% }; %>
+                                        <option value="<%=category.id%>"><%= category.name %></option>
+                                    <% } %>   
                                 <% }) %>
                             </select>
                          </label>
 
-                       
+                         <label for="Style">Estilos: 
+                            <select name="Style" id="Style">
+                                <% styles.forEach(style => { %>
+                                    <% if(style.id == product.idStyle){%>
+                                        <option value="<%=style.id%>" selected><%= style.name %></option>
+                                    <% }else{ %>
+                                        <option value="<%=style.id%>"><%= style.name %></option> 
+                                    <% } %> 
+                                <% }) %>
+                            </select>
+                         </label>
+
                          <label for="colours">Colores:
                             <div class="color">
-                                
                                 <%  for(let i=0;i<colours.length;i++){ %>
                                     <div class="check-c-s">
                                     <% if( colours[i].id == product.idColour ){ %>
@@ -51,7 +66,6 @@
                                     <% }; %>
                                     </div>
                                 <% }; %>  
-
                             </div>
                         </label>
                         
@@ -59,7 +73,7 @@
                             <div class="size">
                                 <% sizes.forEach(size => { %>
                                     <div class="check-size">
-                                        <% if( size == (product.idSize)){ %>
+                                        <% if( size.id == (product.idSize)){ %>
                                         <input class="chk"type="checkbox" value="<%= size.id %>"  name="sizes" id ="size<%= size.id %>" checked>
                                         <label class="lbl" for = "size<%= size.id %>"><%= size.name %></label>
                                         <% }else{ %> 
