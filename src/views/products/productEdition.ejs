@@ -54,7 +54,11 @@
                                 <%  for(let i=0;i<colours.length;i++){ %>
                                     <div class="check-c-s">
                                     <% if( colours[i].id == product.idColour ){ %>
-                                        <input class="chk" type="checkbox" value="<%=colours[i].id %>" name="color" id="colour<%=colours[i].id %>" checked>
+                                        <input class="chk" 
+                                        type="checkbox" 
+                                        value="<%=colours[i].id %>" 
+                                        name="color" 
+                                        id="colour<%=colours[i].id %>" checked>
                                         <label class="lbl" for = "colour<%=colours[i].name %>">
                                             <img src = "/images/colores/<%= colours[i].urlColour %>.jpg"">
                                         </label> 
@@ -74,10 +78,14 @@
                                 <% sizes.forEach(size => { %>
                                     <div class="check-size">
                                         <% if( size.id == (product.idSize)){ %>
-                                        <input class="chk"type="checkbox" value="<%= size.id %>"  name="sizes" id ="size<%= size.id %>" checked>
+                                        <input class="chk"
+                                        type="checkbox" 
+                                        value="<%= size.id %>" 
+                                        name="sizes" 
+                                        id ="size<%= size.id %>" checked>
                                         <label class="lbl" for = "size<%= size.id %>"><%= size.name %></label>
                                         <% }else{ %> 
-                                            <input class="chk"type="checkbox" value="<%= size.id %>"  name="sizes" id ="size<%= size.id %>">
+                                            <input class="chk" type="checkbox" value="<%= size.id %>"  name="sizes" id ="size<%= size.id %>">
                                             <label class="lbl" for = "size<%= size.id %>"><%= size.name %></label>
                                         <% } %> 
                                     </div>
