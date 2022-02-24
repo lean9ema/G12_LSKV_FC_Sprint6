@@ -1,19 +1,18 @@
 # G12_LSKV_FC_Sprint6
 *RETROSPECTIVA*
 
-> **Arreglamos los errores con Heroku, en el  require de jsonDB en usersController era ('../model/jsonUsersDatabase')**
- **y se arreglo replanteando la ruta como ('../model/jsonUsersDataBase'). Heroku en el require distingue entre minusculas y mayusculas**.
+> **Arreglamos los errores con Heroku**
 > 
-> **Cambiamos los formatos de los formularios**.
+> **Arreglamos talles y colores en create/edit en products**.
 > 
-> **El carrito anda con una cookie(Solo se puede comprar un producto)**.
+> **Se realizó la BD**.
 > 
 > **Cumplimos con los puntos del sprint**.
 
 >/users (Lista de usuarios)
 ## Usuario de admin
 - User: admin
-- Email:admin
+- Email:admin@gmail.com
 - Password: admin1234
 
 ## Start Doing: (cosas nuevas para probar) ⭐
@@ -21,11 +20,11 @@
        
 
 ## More of: (cosas para mejorar) 🌼
-- Las disponibilidad de todos y avisar si estan ocupados con universidad, trabajo, etc
+- Realizar más reuniones mediante meet y avisar si alguno no puede conectarse
 
 
 ## Keep Doing: (cosas que queden igual) 👌🏻
-- La comunicacion a la hora de preguntar si se nos complica algo, la ayuda entre todos si estamos atrasados y realizar las reuniones por meet, así podemos compartir más de una pantalla a la vez
+- La comunicacion a la hora de preguntar si se nos complica algo, la ayuda entre todos si estamos atrasados, realizar las reuniones por meet, así podemos compartir más de una pantalla a la vez y utilizar Liveshare para poder participar en el visual del compañero
 
 
 ## Less of: (darle segunda oportunidad) ✌🏻
