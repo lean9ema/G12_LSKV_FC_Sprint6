@@ -1,9 +1,3 @@
-//const jsonDB = require('../model/jsonProductsDataBase');
-//const productModel = jsonDB('productsDataBase');
-//const categories = ["Blusas", "Remeras", "Vestidos", "Monos", "Shorts", "Faldas", "Jeans"];
-//const sizes = ['XS','S','M','L','XL','XXL'];
-//const styles = ['Casual','Hipster','Trendy',"Minimalista"];
-//const colours = [{name:'Rojo',cod:'red'},{name:'Azul',cod:'blue'},{name:'Verde',cod:'green'},{name:'Negro',cod:'black'},{name:'Blanco',cod:'white'},{name:'pink',cod:'pink'}]
 const fs = require('fs');
 const path = require('path');
 const db=require("../database/models");
@@ -51,9 +45,6 @@ const productController = {
     },
     
     list: (req,res) => {
-        //json
-        //const productList = productModel.readFile();
-        //return res.render('products/productList', { productList })
         console.log("Entre a producto List")
         db.Products.findAll()
             .then(function(productList){
@@ -123,7 +114,6 @@ const productController = {
     },
     
     edition: (req,res) => {
-        //let product=productModel.find(req.params.id);
         db.Products.findByPk(req.params.id)
         .then(resP => {
             let product = resP
@@ -140,7 +130,6 @@ const productController = {
     },
 
     prodEdition: (req,res)=>{
-      //let product = productModel.find(req.params.id)
     db.Products.findByPk(req.params.id)
         .then(resP => {
             let product = resP
@@ -210,31 +199,54 @@ const productController = {
     filter: (req,res)=>{ 
         const query = req.query; 
         console.log("Controller Filter: ",query);
-        const aFiltrar = Object.values(query);
+        const indexFilter = Object.values(query);
         if (Object.keys(query)[0].indexOf('styles') == 0 ){ 
-            db.Products.findAll({
-                where:{
-                    idStyle: styles.indexOf(query.styles)
-                }
-            })
-            .then(prods=>{
-                console.log("Aca van los productos",prods);
-                return res.render('products/productfilter',{productList: prods, Filtros: aFiltrar});
+            Promise.all([
+                db.Styles.findOne({
+                    where:{
+                        id: query.styles
+                    }
+                }),
+                db.Products.findAll({
+                    where:{
+                        idStyle: query.styles
+                    }
+                }), 
+                db.Image_product.findAll()
+            ])
+            .then(ArrStyleProds=>{
+                log('Aca va Arr:\n',ArrStyleProds);
+                log('Style',[ArrStyleProds[0]][0].name)
+                return res.render('products/productfilter',{images:ArrStyleProds[2],productList:  ArrStyleProds[1], Filtros: [ArrStyleProds[0]]});
             })
             .catch(err=> console.log(err))
         }else{
-            db.Products.findAll({
-                where:{
-                    [Op.or]: [
-                        { idCategory: categories.indexOf(query.category)+1 },
-                        { idCategory: categories.indexOf(query.category1)+1 }, 
-                        { idCategory: categories.indexOf(query.category2)+1 }
-                      ]
-                }
-            })
-            .then(prods=>{
-                console.log("Aca van los productos",prods);
-                return res.render('products/productfilter',{productList: prods, Filtros: aFiltrar});
+            var filtro2 = query.category;
+            if (query.category1) filtro2 = query.category1;
+            Promise.all([
+                db.Categorys.findAll({
+                    where:{
+                        [Op.or]:[
+                            { id: query.category },
+                            { id: filtro2 }
+                          ]
+                    }
+                }),
+                db.Products.findAll({
+                    where:{
+                        [Op.or]: [
+                            { idCategory: query.category }, 
+                            { idCategory: filtro2 }
+                          ]
+                    }
+                }), 
+                db.Image_product.findAll()
+            ])
+            .then(ArrCateProds=>{
+                log('Aca va Arr: \n',ArrCateProds)
+                let cate = ArrCateProds[0];
+                if(!Array.isArray(cate)) cate = [cate];  
+                return res.render('products/productfilter',{images:ArrCateProds[2],productList: ArrCateProds[1], Filtros: cate});
             })
             .catch(err=> console.log(err))
         }
@@ -291,10 +303,5 @@ const productController = {
     res.redirect("/products")
     }
 }
- 
-
-
-  
-     
    
 module.exports = productController;

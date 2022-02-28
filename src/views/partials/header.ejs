@@ -16,7 +16,13 @@
                 </form>
             </div>
             <div class="login-home">
+                <% if (user){ %>
+                    <% if(user.idRoles == 0){ %>  
                 <a href="/products/productCart"><i class="fas fa-shopping-bag"></i></a>
+                    <% } %> 
+                <% }else{ %> 
+                    <a href="/products/productCart"><i class="fas fa-shopping-bag"></i></a>
+                <% } %> 
                 <% if (user) { %> 
                     <a href="/users/<%= user.id %> "><i class="fas fa-user"></i></a>
                 <% } %> 

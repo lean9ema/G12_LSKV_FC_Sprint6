@@ -12,7 +12,7 @@ router.get('/', productController.list);
 router.get('/create',productController.create);
 router.post('/',upload.fields([{name: 'image'},{name: 'images'}]), validatorProd, productController.store);
 
-// mediante res query
+//Mediante res.query
 router.get('/filter', productController.filter);
 
 //router.get('/productCart' ,productController.prodCart1 );

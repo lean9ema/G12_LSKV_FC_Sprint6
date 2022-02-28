@@ -5,8 +5,6 @@ let db = require('../database/models');
 const { Op } = require("sequelize");
 db.Users.findAll().then(res => users = res ).catch(err => console.log(" listado de usuarios", err))
 
-//const jsonDB = require('../model/jsonUsersDataBase');
-//const userModel = jsonDB('usersDataBase');
 const bcrypt = require('bcryptjs'); 
 const { connect } = require('http2');
 const log = console.log; 
@@ -17,7 +15,7 @@ const usersController = {
     },
     session: function (req,res){
 		const resultValidation = validationResult(req);
-		//console.log(resultValidation.mapped());
+		//console.lg(resultValidation.mapped());
 		//console.log(req.body.password);
 		if (resultValidation.isEmpty()) {
             let usuario=undefined;
@@ -50,8 +48,6 @@ const usersController = {
 		const resultValidation = validationResult(req);
 		console.log('Aca va el file: ');
 		console.log(req.file);
-			// const error = new Error('Hubo un error intente nuevamente!')
-			// return next(error)
 		console.log(resultValidation.errors)
 		if (resultValidation.errors.length > 0) {
 			return res.render('users/register', {
@@ -96,8 +92,6 @@ const usersController = {
         db.Image_users.destroy({where: {idUsers:req.params.id}})
 		return res.redirect('/users');
 	})
-	//if (user.image != undefined) fs.unlinkSync(path.join(__dirname,`../../public/images/users/${user.image}`));
-		//userModel.delete(user.id);
 	},
 
 	list: (req,res)=>{
@@ -182,49 +176,6 @@ const usersController = {
 		log(req.body); 
 		log('Aca va File: '); 
 		log(req.file); 
-		// if ( req.file ){ 
-		// 	if (user.image != undefined) fs.unlinkSync(path.join(__dirname,`../../public/images/users/${user.image}`));
-		// 	user_edit = { 
-		// 		id: Number(user.id), 
-		// 		name: req.body.name,
-		// 		surname: req.body.surname, 
-		// 		'user-name': req.body['user-name'], 
-		// 		email: req.body.email, 
-		// 		dni: Number(req.body.dni), 
-		// 		fNac: req.body.fNac,
-		// 		image: req.file.filename,
-		// 		password: user.password,
-		// 		rol: user.rol
-		// 	}; 
-		// } else if(req.body['img-default'] == 'on') { 
-		// 	if (user.image != undefined) fs.unlinkSync(path.join(__dirname,`../../public/images/users/${user.image}`));
-		// 	user_edit = { 
-		// 		id: Number(user.id), 
-		// 		name: req.body.name,
-		// 		surname: req.body.surname, 
-		// 		'user-name': req.body['user-name'], 
-		// 		email: req.body.email, 
-		// 		dni: Number(req.body.dni), 
-		// 		fNac: req.body.fNac,
-		// 		password: user.password,
-		// 		rol: user.rol
-		// 	};
-		// }else { 
-		// 	user_edit = { 
-		// 		id: Number(user.id), 
-		// 		name: req.body.name,
-		// 		surname: req.body.surname, 
-		// 		'user-name': req.body['user-name'], 
-		// 		email: req.body.email, 
-		// 		dni: Number(req.body.dni), 
-		// 		fNac: req.body.fNac, 
-		// 		image: user.image,
-		// 		password: user.password,
-		// 		rol: user.rol
-		// 	};
-		// }
-		//log(user_edit); 
-		//userModel.update(user_edit); 
 		res.redirect(`/users/${req.params.id}`);
 	}
 
