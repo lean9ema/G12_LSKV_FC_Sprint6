@@ -22,7 +22,7 @@
                         <a href="/products/filter?category=<%=categories.find(e=>e.name=='Jeans').id%>" class="style-button">
                             Jeans 
                         </a>
-                        <a href="/products/filter?category=<%=categories.find(e=>e.name=='Short').id%>" class="style-button">
+                        <a href="/products/filter?category=<%=categories.find(e=>e.name=='Shorts').id%>" class="style-button">
                             Shorts 
                         </a>
                         <a href="/products/filter?category=<%=categories.find(e=>e.name=='Vestidos').id%>" class="style-button">
@@ -31,6 +31,7 @@
                    </div>
                </div>
            </section>
+           
             <section class>
                 <div class="products">
                     <article>
@@ -50,7 +51,7 @@
                         </a>
                     </article>
                     <article>
-                        <a href="/products/filter?category=<%=categories.find(e=>e.name=='Short').id%>&category1=<%=categories.find(e=>e.name=='Faldas').id%>">
+                        <a href="/products/filter?category=<%=categories.find(e=>e.name=='Shorts').id%>&category1=<%=categories.find(e=>e.name=='Faldas').id%>">
                             <img src="images/short.PNG" alt="Teléfono Móvil Samsung Galaxy" class="product_img">
                             <div class="main-article">
                                 <h4 class="description">SHORTS Y FALDAS</h4>
@@ -58,7 +59,7 @@
                         </a>
                     </article>
                     <article>
-                        <a href="/products/filter?category=<%=categories.find(e=>e.name=='Jeans').id%>&category1=<%=categories.find(e=>e.name=='Jeans').id%>">
+                        <a href="/products/filter?category=<%=categories.find(e=>e.name=='Jeans').id%>&category1=<%=categories.find(e=>e.name=='Pantalones').id%>">
                             <img src="images/jean.PNG" alt="SmartTv Samsung" class="product_img">
                             <div class="main-article">
                                 <h4 class="description">JEANS Y PANTALONES</h4>
@@ -105,6 +106,5 @@
             </section>
         </main>
         <%- include('../partials/footer') %> 
-       
     </body>
 </html>

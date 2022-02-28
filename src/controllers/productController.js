@@ -211,7 +211,7 @@ const productController = {
                     where:{
                         idStyle: query.styles
                     }
-                }), 
+                }),
                 db.Image_product.findAll()
             ])
             .then(ArrStyleProds=>{
@@ -245,8 +245,8 @@ const productController = {
             .then(ArrCateProds=>{
                 log('Aca va Arr: \n',ArrCateProds)
                 let cate = ArrCateProds[0];
-                if(!Array.isArray(cate)) cate = [cate];  
-                return res.render('products/productfilter',{images:ArrCateProds[2],productList: ArrCateProds[1], Filtros: cate});
+                if(!Array.isArray(cate)) cate = [cate];
+                return res.render('products/productFilter',{images:ArrCateProds[2],productList: ArrCateProds[1], Filtros: cate});
             })
             .catch(err=> console.log(err))
         }

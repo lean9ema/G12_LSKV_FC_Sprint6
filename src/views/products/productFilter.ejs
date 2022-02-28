@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
     <%- include( '../partials/head') %>
-    
     <body>
-    
         <%- include('../partials/header') %>
-
         <main class="productList">
             <h2 class="title2"> Lista de productos filtrados por:  
                 <% Filtros.forEach((e,i,a) => { %> 
                 <% if (i == a.length - 1){ %>
-                    <%= e.name %> 
+                    <%= e.name %>
                 <%}else { %>
                     <%=  e.name + " y "  %>
                 <%}});%> 
             </h2>
+            
             <section class="products">
                     <% productList.forEach(element => { %>
                             <article>
