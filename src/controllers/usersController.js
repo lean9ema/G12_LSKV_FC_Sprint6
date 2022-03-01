@@ -3,11 +3,10 @@ const path = require('path');
 const { validationResult } = require('express-validator');
 let db = require('../database/models');
 const { Op } = require("sequelize");
-db.Users.findAll().then(res => users = res ).catch(err => console.log(" listado de usuarios", err))
-
 const bcrypt = require('bcryptjs'); 
 const { connect } = require('http2');
 const log = console.log; 
+db.Users.findAll().then(res=> users = res);
 
 const usersController = {
     login: function(req,res) {
@@ -106,32 +105,22 @@ const usersController = {
 	},
 
 	usuario: (req,res)=>{
-		db.Users.findByPk(req.params.id)
+		db.Users.findByPk(req.params.id,
+			{
+				include:[{association: 'image_users'}]
+			})
 		.then(user=>{
-			db.Image_users.findOne({
-				where:{
-					idUsers:user.id
-				}
-			})
-			.then(img=>{
-				log('Imagen',img);
-				return res.render('users/usuario',{ element : user, img});
-			})
+			return res.render('users/usuario',{ element : user});
 		})
     }, 
 
 	edition: (req,res) =>{
-		db.Users.findByPk(req.params.id)
+		db.Users.findByPk(req.params.id,
+			{
+				include:[{association: 'image_users'}]
+			})
 		.then(user=>{
-			db.Image_users.findOne({
-				where:{
-					idUsers:user.id
-				}
-			})
-			.then(img=>{
-				log('Imagen',img);
-				return res.render(`users/userEdit`,{ element : user,img});
-			})
+			return res.render(`users/userEdit`,{ element : user});
 		})
 	}, 
 	update: (req,res)=>{
@@ -148,6 +137,10 @@ const usersController = {
 			where:{id:req.params.id}
 		})
 		.then(user=>{
+			log('Aca va BODY: '); 
+			log(req.body); 
+			log('Aca va File: '); 
+			log(req.file); 
 			db.Image_users.findOne({
 				where:{
 					idUsers:user.id
@@ -171,14 +164,8 @@ const usersController = {
 				}
 			})
 		})
-		log('Aca va BODY: '); 
-		log(req.body); 
-		log('Aca va File: '); 
-		log(req.file); 
 		res.redirect(`/users/${req.params.id}`);
 	}
-
-   
 }
 
 module.exports = usersController;

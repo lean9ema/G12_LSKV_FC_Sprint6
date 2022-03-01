@@ -75,7 +75,7 @@
                         
                         <label>Talles:
                             <div class="size">
-                                <% sizes.forEach(size => { %>
+                                <% size.forEach(size => { %>
                                     <div class="check-size">
                                         <% if( size.id == (product.idSize)){ %>
                                         <input class="chk"
@@ -94,7 +94,7 @@
                         </label>
 
                         <label for="image">Imagen principal:
-                            <img src="/images/products/<%= imgP.urlName %>" alt="" width="50px">
+                            <img src="/images/products/<%= product.ImageProduct[0].urlName %>" alt="" width="50px">
                             <input type="file" name="image" id="image">
                         </label>
 

@@ -10,11 +10,7 @@
                 <form action="?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="im-user">
                     <div class="img-user">
-                        <% if(img== null){ %>
-                            <img src=/images/users/default.png > 
-                        <%}else{%>
-                            <img src=/images/users/<%=img.url_name%>>                         
-                        <% } %>   
+                        <img src=/images/users/<%=element.image_users[0].url_name%>>                         
                     </div>
                     <div class="img-form">
                         <label for="img-default">Eliminar actual? </label>

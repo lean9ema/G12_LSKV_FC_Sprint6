@@ -5,14 +5,7 @@ const { Op } = require("sequelize");
 const { validationResult } = require('express-validator'); 
 const log = console.log;
 
-Promise.all(db.Categorys.findAll(),db.Sizes.findAll(),db.Styles.findAll(),db.Colours.findAll())
-.then(([cate,size,styl,colr])=>{
-    categories = cate; 
-    sizes = size;
-    styles = styl; 
-    colours = colr;
-})
-.catch(err => log(err));
+
 
 const productController = {
     prodDetail: (req,res) =>{
@@ -32,8 +25,6 @@ const productController = {
                     {association: "Styles"}]
                 })
             .then(prods=>{
-                //log('include',product.ImageProduct[0].urlName);
-                //log('include',product.Colours)
                 log('imgs',prods[0])
                 return res.render("products/productDetail",{product, prods})
             })
@@ -45,7 +36,7 @@ const productController = {
         console.log("Entre a producto List")
 
         db.Products.findAll({
-            include:[{association: 'category'}, {association: 'ImageProduct'}]
+            include:[{association: 'Styles'}, {association: 'ImageProduct'}]
         })
         .then(productList=>{
             return res.render('products/productList', { productList });
@@ -54,8 +45,11 @@ const productController = {
     },
 
     create: (req,res) => {
-        console.log("Aca van los colores",colours);
-        return res.render("products/productCreate",{sizes,colours,styles,categories})
+        Promise.all([db.Categorys.findAll(),db.Sizes.findAll(),db.Styles.findAll(),db.Colours.findAll()])
+        .then(([categories,sizes,styles,colours])=>{
+            return res.render("products/productCreate",{sizes,colours,styles,categories})
+        })
+        .catch(err => log(err));
     },
 
     store: (req,res)=>{
@@ -110,19 +104,20 @@ const productController = {
     },
     
     edition: (req,res) => {
-        db.Products.findByPk(req.params.id)
-        .then(resP => {
-            let product = resP
-            db.Image_product.findOne({where:{idproducts: req.params.id}})
-            .then(resI =>  {
-                let imgP = resI
-                return res.render("products/productEdition", {product,categories,colours,sizes,imgP})
-            })
-            .catch(err => console.log("imagen",err))
-            
+        Promise.all([
+            db.Products.findByPk(req.params.id,
+                {
+                    include:[{association: 'ImageProduct'}]
+                }),
+            db.Styles.findAll(),
+            db.Categorys.findAll(),
+            db.Colours.findAll(),
+            db.Sizes.findAll()
+        ])
+        .then(([product,styles,categories,colours,size]) => {
+            return res.render("products/productEdition", { product,styles,categories,colours,size });
         })
-        .catch(err => console.log("producto",err))
-        
+        .catch(err => console.log("producto",err));
     },
 
     prodEdition: (req,res)=>{

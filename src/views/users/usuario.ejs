@@ -8,11 +8,7 @@
             <h1 class="title">Perfil de usuario</h1>
             <div class="profile-user">
                 <div class="img-user">
-                    <% if(img== null){ %>
-                        <img src=/images/users/default.png > 
-                    <%}else{%>
-                        <img src=/images/users/<%=img.url_name%>>                         
-                    <% } %>   
+                    <img src=/images/users/<%=element.image_users[0].url_name%>>                         
                 </div>
                 <div class="datos-user">
                     <p><span class="negrita">Usuario:</span> <%= element['userName'] %></p>
