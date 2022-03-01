@@ -15,8 +15,6 @@ const usersController = {
     },
     session: function (req,res){
 		const resultValidation = validationResult(req);
-		//console.lg(resultValidation.mapped());
-		//console.log(req.body.password);
 		if (resultValidation.isEmpty()) {
             let usuario=undefined;
 			for (let i=0; i<users.length; i++) {
@@ -76,6 +74,11 @@ const usersController = {
 						url_name:req.file.filename,
 						idUsers: user.id
 					})
+				}else { 
+					db.Image_users.create({
+						url_name:'default.png',
+						idUsers: user.id
+					})
 				}
 			})
 			.catch(err=>log(err));
@@ -84,7 +87,6 @@ const usersController = {
 	},
 
 	delete: function(req,res){
-	//	const user = userModel.find(req.params.id);
 	db.Users.destroy({where: {id:req.params.id}})
 	db.Image_users.findOne({where:{idUsers:req.params.id}})
 	.then(imgU=>{
@@ -95,14 +97,11 @@ const usersController = {
 	},
 
 	list: (req,res)=>{
-		db.Users.findAll()
+		db.Users.findAll({
+			include: [{association: 'image_users'}]
+		})
 		.then(users =>{
-			console.log("Van los users:",users);
-			db.Image_users.findAll()
-			.then(imgs=>{
-				log("Van las imagenes:",imgs);
-				res.render('users/usersList',{ users,imgs });
-			})
+			res.render('users/usersList',{ users });
 		})
 	},
 
@@ -120,6 +119,7 @@ const usersController = {
 			})
 		})
     }, 
+
 	edition: (req,res) =>{
 		db.Users.findByPk(req.params.id)
 		.then(user=>{
@@ -171,7 +171,6 @@ const usersController = {
 				}
 			})
 		})
-		let user_edit; 
 		log('Aca va BODY: '); 
 		log(req.body); 
 		log('Aca va File: '); 

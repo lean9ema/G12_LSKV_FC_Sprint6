@@ -4,57 +4,53 @@ const db=require("../database/models");
 const { Op } = require("sequelize");
 const { validationResult } = require('express-validator'); 
 const log = console.log;
-db.Categorys.findAll()
-.then(res => categories = res)
-db.Sizes.findAll()
-.then(res => sizes = res)
-db.Styles.findAll()
-.then(res => styles = res)
-db.Colours.findAll()
-.then(res => colours = res)
+
+Promise.all(db.Categorys.findAll(),db.Sizes.findAll(),db.Styles.findAll(),db.Colours.findAll())
+.then(([cate,size,styl,colr])=>{
+    categories = cate; 
+    sizes = size;
+    styles = styl; 
+    colours = colr;
+})
+.catch(err => log(err));
 
 const productController = {
     prodDetail: (req,res) =>{
-        db.Products.findByPk(req.params.productId)
+        db.Products.findByPk(req.params.productId,
+            {include: [ {association: 'ImageProduct'},
+                        {association: 'Colours'},
+                        {association: 'Sizes'}
+        ]})
         .then(product=>{
-            console.log("Aca va el PRODUCTO",product);
-            console.log("Aca va ID",product.id);
-            console.log("Aca va C",product.idColour);
-            db.Colours.findByPk(product.idColour)
-            .then(color=> {
-                let url_color = color.urlColour
-                db.Sizes.findByPk(product.idColour)
-                .then(size=> {
-                    let talle = size.name
-                    db.Image_product.findOne({
-                        where:{idproducts:product.id}
-                    })
-                    .then(image=>{
-                        console.log(image);
-                        let url_image = image.urlName;
-                        console.log(url_image);
-                        return res.render("products/productDetail",{product,
-                             url_color, talle, url_image})
-                    })
-                    .catch(err => console.log("Este es de IMAGE",err));        
+            db.Products.findAll({
+                where:{[Op.or]: [
+                    { idCategory: product.idCategory }, 
+                    { idStyle: product.idStyle }
+                    ]},
+                    limit:4,
+                    include: [{association: 'ImageProduct'},
+                    {association: "Styles"}]
                 })
-            })    
+            .then(prods=>{
+                //log('include',product.ImageProduct[0].urlName);
+                //log('include',product.Colours)
+                log('imgs',prods[0])
+                return res.render("products/productDetail",{product, prods})
+            })
             .catch(err => console.log(err));
-        })
-        .catch(err => console.log(err));
+        });
     },
     
     list: (req,res) => {
         console.log("Entre a producto List")
-        db.Products.findAll()
-            .then(function(productList){
-                console.log(productList)
-                db.Image_product.findAll()
-                  .then(images=>{
-                res.render('products/productList', { productList, images});
-                  })
-            })
-            .catch(err => console.log(err));
+
+        db.Products.findAll({
+            include:[{association: 'category'}, {association: 'ImageProduct'}]
+        })
+        .then(productList=>{
+            return res.render('products/productList', { productList });
+        })
+        .catch(err => console.log(err));
     },
 
     create: (req,res) => {
@@ -199,54 +195,42 @@ const productController = {
     filter: (req,res)=>{ 
         const query = req.query; 
         console.log("Controller Filter: ",query);
-        const indexFilter = Object.values(query);
         if (Object.keys(query)[0].indexOf('styles') == 0 ){ 
-            Promise.all([
-                db.Styles.findOne({
-                    where:{
-                        id: query.styles
-                    }
-                }),
-                db.Products.findAll({
-                    where:{
-                        idStyle: query.styles
-                    }
-                }),
-                db.Image_product.findAll()
-            ])
-            .then(ArrStyleProds=>{
-                log('Aca va Arr:\n',ArrStyleProds);
-                log('Style',[ArrStyleProds[0]][0].name)
-                return res.render('products/productfilter',{images:ArrStyleProds[2],productList:  ArrStyleProds[1], Filtros: [ArrStyleProds[0]]});
+            db.Products.findAll({
+                where:{
+                    idStyle: query.styles
+                },
+                include: [{association: 'ImageProduct'},{association: 'category'},{association: 'Styles'}]
+            })
+            .then(prods=>{
+                let Filtros = [prods[0].Styles];
+                return res.render('products/productfilter',{productList:prods, Filtros });
             })
             .catch(err=> console.log(err))
         }else{
             var filtro2 = query.category;
             if (query.category1) filtro2 = query.category1;
             Promise.all([
-                db.Categorys.findAll({
-                    where:{
-                        [Op.or]:[
-                            { id: query.category },
-                            { id: filtro2 }
-                          ]
-                    }
-                }),
                 db.Products.findAll({
                     where:{
                         [Op.or]: [
                             { idCategory: query.category }, 
                             { idCategory: filtro2 }
                           ]
-                    }
-                }), 
-                db.Image_product.findAll()
+                    },
+                    include: [{association: 'ImageProduct'},{association: 'category'},{association: 'Styles'}]
+                }),
+                db.Categorys.findAll({
+                    where: {                    
+                        [Op.or]: [
+                        { id: query.category }, 
+                        { id: filtro2 }
+                    ]}
+                })
             ])
-            .then(ArrCateProds=>{
-                log('Aca va Arr: \n',ArrCateProds)
-                let cate = ArrCateProds[0];
+            .then(([prods,cate])=>{
                 if(!Array.isArray(cate)) cate = [cate];
-                return res.render('products/productFilter',{images:ArrCateProds[2],productList: ArrCateProds[1], Filtros: cate});
+                return res.render('products/productFilter',{productList:prods, Filtros: cate});
             })
             .catch(err=> console.log(err))
         }

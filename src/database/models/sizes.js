@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Sizes.hasMany(models.Products,{
-        as: "Products", 
+        as: "ProductsSize", 
         foreignKey: "idSize" 
        })
     }

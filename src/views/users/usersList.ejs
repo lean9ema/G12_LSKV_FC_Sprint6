@@ -12,16 +12,10 @@
                     <% users.forEach(element => { %>
                             <article>
                                 <a href="/users/<%= element.id  %> ">
-                                    <% let urlImg = 'default.png' %>  
-                                    <% imgs.forEach(img=>{%>
-                                        <% if(img.idUsers == element.id){ %>
-                                            <% urlImg = img.url_name %>  
-                                        <% } %>  
-                                    <%})%>
-                                    <img src=/images/users/<%=urlImg%> > 
+                                    <img src='/images/users/<%=element.image_users[0].url_name%>' >     
                                 </a>
                                 <div class="description">
-                                    <h4> <%= element['userName'] %> </h4>   
+                                    <h4> <%= element.userName %> </h4>   
                                     <p class="name"><%=element.name%><%=element.lastName%></p>
                                     <p class="email"> <%= element.email %> </p>
                                     <p class="birthday-date"><%= element.date_of_birth %> </p>

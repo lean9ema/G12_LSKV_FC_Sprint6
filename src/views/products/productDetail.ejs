@@ -10,7 +10,7 @@
             <article class="prod-detail">
                 <div class="img-container">
                     <div class="img-principal">
-                        <img src = "/images/products/<%=url_image%> ">
+                        <img src = "/images/products/<%=product.ImageProduct[0].urlName%> ">
                     </div>
 
                     <div class="slider-buttons-container"> 
@@ -30,14 +30,12 @@
                     <div class="stars">
                         <div class="score">
                             <% for( let index = 1; index <= 5; index++ ) { %>
-
                                 <% if (index <= product.idStar) { %>
                                     <i class="far fa-star" style="color: #d4b073;"></i>
                                  
                                 <% }else { %>
                                     <i class="far fa-star"></i>
                                 <% } %> 
-                            
                             <% } %> 
 
                         </div>
@@ -54,33 +52,33 @@
                     
                         <div class="color"> <!-- agregar al objeto una array de colores y iterarlos con un foreach-->
                             
-                                <div class="check-c-s">
-                                    <input class="chk" type="checkbox" value="<%=product.idColour%>" name="color" id="colour">
-                                    <label class="lbl" for = "colour">
-                                        <img src = "/images/colores/<%=url_color%>.jpg">
-                                    </label> 
-                                </div>
+                            <div class="check-c-s">
+                                <input class="chk" type="checkbox" value="<%=product.idColour%>" name="color" id="colour">
+                                <label class="lbl" for = "colour">
+                                    <img src = "/images/colores/<%=product.Colours.urlColour%>.jpg">
+                                </label> 
+                            </div>
                             
                         </div> 
 
-                            <div class="size">
-                                
-                                    <div class="check-size">
-                                        <input class="chk" type="checkbox" value="<%=product.idSizes%>" name="sizes" id ="size">                                        
-                                        <label class="lbl" for = "size"> <%=talle%> </label> 
-                                    </div> 
-                                 
-                            </div>
+                        <div class="size">
+                            
+                            <div class="check-size">
+                                <input class="chk" type="checkbox" value="<%=product.idSizes%>" name="sizes" id ="size">                                        
+                                <label class="lbl" for = "size"> <%=product.Sizes.name%> </label> 
+                            </div> 
+                             
+                        </div>
 
                         <div class="cantidad">
                                 
-                                <% if (user && user.idRoles != 1) { %>
-                                    <label for="cant">
-                                    Cantidad: 
-                                    </label>
-                                    <input type="number" id="cant" name="cant" min="1" value="1">
-                                    <button type="submit" class="style-button">Agregar al carrito</button>
-                                <% } %>
+                            <% if (user && user.idRoles != 1) { %>
+                                <label for="cant">
+                                Cantidad: 
+                                </label>
+                                <input type="number" id="cant" name="cant" min="1" value="1">
+                                <button type="submit" class="style-button">Agregar al carrito</button>
+                            <% } %>
 
                                 
                         </div>
@@ -112,8 +110,18 @@
             <div class="title-recom">
                 <p class= "title-recom"> Tambien te puede gustar </p>
             </div>
-
-
+            <div class="Recomendaciones">
+                <% prods.forEach(prod=>{%>
+                    <article>
+                        <a href="/products/<%= prod.id  %>">
+                            <img src = "/images/products/<%= prod.ImageProduct[0].urlName %>">
+                        </a>
+                        <p class="name"><%= prod.name %> </p>
+                        <p class="category"><%= prod.Styles.name %> </p>    
+                        <p class="price">$<%= prod.price %> </p>
+                    </article>
+                <% }) %> 
+            </div>
         </main>
 
         <%- include('../partials/footer') %> 

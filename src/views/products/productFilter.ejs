@@ -16,21 +16,13 @@
             <section class="products">
                     <% productList.forEach(element => { %>
                             <article>
-                                <% images.forEach(img => { %>
-                                    <% if (img.idproducts==element.id) { %>
-                                           <a href="/products/<%= element.id  %>"><img src="/images/products/<%= img.urlName %>"></a>
-                                    <% } %>
-                               <% }) %>
+                                <a href="/products/<%= element.id  %>"><img src="/images/products/<%= element.ImageProduct[0].urlName %>"></a>
                                 <div class="descripcion">
                                 <h4> <%= element.name %> </h4>   
-                                <% if(Filtros.length != 1 ){ %> 
-                                    <% Filtros.forEach(f => {%>
-                                        <% if(f.id == element.idCategory){ %>
-                                            <p class="cat"><%= f.name %> </p>
-                                        <%}%> 
-                                    <% }); %> 
+                                <% if(Filtros.length == 1 ){ %> 
+                                    <p class="cat"> <%= element.category.name %> </p>
                                 <% }else {%>
-                                    <p class="cat"> <%= Filtros[0].name %> </p>
+                                    <p class="cat"> <%= element.Styles.name %> </p>
                                 <% } %> 
                                 <p class="precio">$<%= element.price %> </p>
 

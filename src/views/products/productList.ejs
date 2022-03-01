@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
     <%- include( '../partials/head') %>
-    
     <body>
-    
         <%- include('../partials/header') %>
-
         <main class="productList">
             <h2 class="title"> Lista de productos </h2>
             <section class="products">
                     <% productList.forEach(element => { %>
-                        
-                            <article>
-                               
-                                <% images.forEach(img => { %>
-                                     <% if (img.idproducts==element.id) { %>
-                                            <a href="/products/<%= element.id  %>"><img src="/images/products/<%= img.urlName %>"></a>
-                                     <% } %>
-                                <% }) %>
+                            
+                        <article>
+                            <a href="/products/<%= element.id  %>"><img src="/images/products/<%= element.ImageProduct[0].urlName %>"></a>
+                                <div class="descripcion">
+                                    <p class="precio">$<%= element.price %> </p>
+                                    <p class="category"><%= element.category.name %> </p>    
+                                    <p> <%= element.name %> </p>   
+                                </div>
+                        </article>
 
-                                    <div class="descripcion">
-                                        <p class="precio">$<%= element.price %> </p>
-                                        <p> <%= element.name %> </p>   
-                                        <p class="category"><%= element.category %> </p>
-                                    </div>
-                            </article>
                     <% }) %>
             </section>
         </main>
