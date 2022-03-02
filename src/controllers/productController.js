@@ -199,7 +199,7 @@ const productController = {
             })
             .then(prods=>{
                 let Filtros = [prods[0].Styles];
-                return res.render('products/productfilter',{productList:prods, Filtros });
+                return res.render('products/productFilter',{productList:prods, Filtros });
             })
             .catch(err=> console.log(err))
         }else{
