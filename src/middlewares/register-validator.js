@@ -4,6 +4,7 @@ const path = require('path');
 //const userModel = jsonDB('usersDataBase'); 
 var db = require('../database/models');
 const { Op } = require("sequelize");
+const log = console.log;
 
 var fecha = new Date(); 
 var mes = fecha.getMonth() + 1;  
@@ -20,16 +21,17 @@ const validator = [
     
     body('email').notEmpty().withMessage('Debes escribir un correo electrónico').bail()
         .isEmail().withMessage('Debes escribir un formato de correo válido').bail()
-        .custom((value, {req})=>{
-            db.Users.findOne({
+        .custom( async (value, {req})=>{
+            let user =  await db.Users.findOne({
                 where:{
                     email:req.body.email
                 }
             }) 
-            .then(user => {
-                console.log(user);
-            })
-            // if() throw new Error('El un email ya registrado debe ingresar otro')
+            //.then(user => {
+            if( user != undefined ) throw new Error('El un email ya registrado debe ingresar otro'); 
+            //})
+            log(user);
+            //.catch(err => log(err))
             return true;
         }),
 
